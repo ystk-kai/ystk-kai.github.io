@@ -22,3 +22,4 @@ This is the programming language I have been using.
 - SQL
 - Typescript
 - VB.NET
+- Rust
