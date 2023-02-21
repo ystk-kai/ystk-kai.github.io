@@ -1,12 +1,112 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Addition of the last digit</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Addition of the last digit</title>
 </head>
 <body>
-    <script async src="//jsfiddle.net/g9ro7mhz/4/embed/result/dark/"></script>
+  <!-- https://jsfiddle.net/g9ro7mhz/4/ -->
+  <div class="container">
+    <div class="input">
+      <textarea id="input-textarea" placeholder="Enter numbers to add"></textarea>
+    </div>
+    <div class="output">
+      <pre id="output-result"></pre>
+    </div>
+  </div>
+  <script>
+function add_last_digits(num) {
+  if (String(num).length === 1) {
+  	return num;
+  }
+  
+  let digits = num.toString().split("").map((d) => parseInt(d));
+  let answers = [];
+
+  for (let i = 0; i < digits.length - 1; i++) {
+    if (digits[i + 1] !== undefined) {
+      answers.push((digits[i] + digits[i + 1]) % 10);
+    } else {
+      answers.push(digits[i]);
+    }
+  }
+
+  if (answers.length > 1) {
+    return add_last_digits(parseInt(answers.join("")));
+  }
+
+  return answers.pop();
+}
+
+document.getElementById("input-textarea").addEventListener("input", function (event) {
+  const input = event.target.value;
+  const lines = input.split("\n");
+  let output = "";
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line.length > 0) {
+      const answer = add_last_digits(parseInt(line));
+      output += `${line} -> ${answer}\n`;
+    }
+  }
+  document.getElementById("output-result").textContent = output;
+});
+    </script>
+    <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#input-textarea {
+  width: 100%;
+  height: 200px;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px;
+  border: 1px solid #2f3640;
+  border-radius: 5px;
+  outline: none;
+  resize: vertical;
+}
+
+.output {
+  width: 100%;
+}
+
+#output-result {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  padding:10px;
+  background-color: #2f3640;
+  color: #fff;
+  border-radius: 5px;
+  white-space: pre-wrap;
+}
+    </style>
 </body>
 </html>
