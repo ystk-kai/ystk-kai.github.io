@@ -9,6 +9,24 @@
 <body>
   <!-- https://jsfiddle.net/g9ro7mhz/4/ -->
   <div class="container">
+    <h1>下1桁足し算</h1>
+    <ul>
+      <li>下1桁足し算の手順は以下の通り:
+        <ol>
+        <li>隣り合う数字同士を足す。</li>
+        <li>計算結果の1桁目を求める。</li>
+        <li>計算結果の1桁目をまた足す。</li>
+        <li>上記の手順を計算結果が1桁になるまで繰り返す。</li>
+        </ol>
+      </li>
+      <li>例として、1432の計算手順は以下の通り:
+        <ol>
+        <li>1+4=5、4+3=7、3+2=5 なので、計算結果は575。</li>
+        <li>575の計算手順は、5+7=12、7+5=12 なので、計算結果は22。</li>
+        <li>22の計算手順は、2+2=4 なので、最終的な解答は4となる。</li>
+        </ol>
+      </li>
+    </ul>
     <div class="input">
       <textarea id="input-textarea" placeholder="Enter numbers to add"></textarea>
     </div>
