@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regularity and lawfulness of numbers</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>規則性・法則性</h1>
+    <ul class="example">
+      <li>規則性・法則性の手順は以下の通り:
+        <ol>
+          <li>表の隠された部分の規則性・法則性を見つける。</li>
+          <li>四則演算を用いて解答を導く</li>
+        </ol>
+      </li>
+    </ul>
+    <table border="1" class="example-table">
+      <tr>
+        <td>1</td>
+        <td>4</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>?</td>
+        <td>15</td>
+      </tr>
+    </table>
+    <p class="example">
+    表をスペース区切りと改行で入力する。<br>
+    「？」の箇所に合わせて3行目・4行目に対象の値を入力する。
+    </p>
+    <div class="input">
+      <textarea id="input-textarea" 
+        placeholder="Enter numbers to add
+Example:
+1 7
+9 15
+4
+"></textarea>
+    </div>
+    <div class="output">
+      <pre id="output-result"></pre>
+    </div>
+  </div>
+  <script>
+function regularity_numbers(inputs, question, position) {
+  
+  let answers = "";
+  
+  if (inputs[0][0] < inputs[0][1]) {
+  	// 足し算 or 掛け算
+    
+    if (inputs[0][1] - inputs[0][0] === inputs[1][1] - inputs[1][0]) {
+    	const x = inputs[0][1] - inputs[0][0];
+    	return (position === "top" ? question - x : question + x) + ` (x=${x})`;
+    }
+    
+    if (inputs[0][1] / inputs[0][0] === inputs[1][1] / inputs[1][0]) {
+    	const x = inputs[0][1] / inputs[0][0];
+      return (position === "top" ? question / x : question * x) + ` (x=${x})`;
+    }
+    
+    if (inputs[0][0] * Math.ceil(inputs[0][1]/inputs[0][0]) - inputs[0][1] === inputs[1][0] * Math.ceil(inputs[1][1]/inputs[1][0]) - inputs[1][1]) {
+    	const x = Math.ceil(inputs[0][1]/inputs[0][0]);
+      const y = inputs[0][0] * x - inputs[0][1];
+      return (position === "top" ? (question + y) / x: question * x - y) + ` (x=${x}, y=${y})`;
+    }
+  } else {
+  	// 引き算 or 割り算
+    
+    if (inputs[0][0] - inputs[0][1] === inputs[1][0] - inputs[1][1]) {
+    	const x = inputs[0][0] - inputs[0][1];
+      return (position === "top" ? question + x : question - x) + ` (x=${x})`;
+    }
+    
+    if (inputs[0][0] / inputs[0][1] === inputs[1][0] / inputs[1][1]) {
+    	const x = inputs[0][0] / inputs[0][1];
+      return (position === "top" ? question * x : question / x) + ` (x=${x})`;
+    }
+  }
+  
+
+  return answers;
+}
+
+document.getElementById("input-textarea").addEventListener("input", function (event) {
+  const input = event.target.value;
+  const lines = input.split("\n");
+  let output = "";
+  let inputs = [];
+  
+  if (lines.length < 3) {
+  	return;
+  }
+  
+  if (lines.length > 4) {
+  	document.getElementById("output-result").textContent = "Input error. Limit four lines.";
+  	return;
+  }
+  
+  for (let i = 0; i < lines.length - 1; i++) {
+    inputs.push(lines[i].trim().split(' ').map(x => Number(x)));
+  }
+  
+  let question = Number(lines[2]) || Number(lines[3]);
+  let position = lines[2] ? "bottom" : "top";
+    
+  const transpose = a => a[0].map((_, c) => a.map(r => r[c]));
+  inputs = transpose(inputs);
+  
+  output = regularity_numbers(inputs, question, position);
+  
+  document.getElementById("output-result").textContent = output;
+});
+  </script>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#input-textarea {
+  width: 100%;
+  height: 200px;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px;
+  border: 1px solid #2f3640;
+  border-radius: 5px;
+  outline: none;
+  resize: vertical;
+}
+
+.output {
+  width: 100%;
+}
+
+#output-result {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  padding:10px;
+  background-color: #2f3640;
+  color: #fff;
+  border-radius: 5px;
+  white-space: pre-wrap;
+}
+      
+.example {
+  margin: 10px 0;
+  padding: 0 30px;
+  font-size: 0.9rem;
+}
+
+.example-table {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.example-table td {
+  padding: 6px 12px;
+}
+  </style>
+</body>
+
+</html>
