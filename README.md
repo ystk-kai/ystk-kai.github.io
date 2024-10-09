@@ -10,16 +10,22 @@ At work, I do web, windows app, and server stuff.
 
 This is the programming language I have been using.
 
+### Frequently Used
+
 - Bash
-- C#
-- Go
 - HTML/CSS
-- Javascript(Node.js)
+- Javascript / Typescript
+- Rust
+
+### Occasionally Used
+
+- Go
+- Python
+
+### Used in the Past but Forgotten
+
+- C#
 - Kotlin
 - Lua
 - PHP
-- Python
-- SQL
-- Typescript
 - VB.NET
-- Rust
