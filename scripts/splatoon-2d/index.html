@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Splatoon 2D (インク調整版)</title>
+    <title>Splatoon 2D (左パッドエイム版)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -82,19 +82,19 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: clamp(150px, 35vh, 220px); /* Height of the control area */
-            padding: 10px;
+            height: clamp(150px, 35vh, 200px); /* Adjusted height */
+            padding: 10px 20px; /* Added horizontal padding */
             box-sizing: border-box;
-            justify-content: space-between;
+            justify-content: space-between; /* Space between move pad and action buttons */
             align-items: center;
             user-select: none;
             -webkit-user-select: none; /* Safari */
             z-index: 500; 
         }
 
-        .virtual-pad-area {
-            width: clamp(120px, 30vw, 180px); 
-            height: clamp(120px, 30vw, 180px);
+        .virtual-pad-area { /* Only for move pad now */
+            width: clamp(120px, 30vw, 160px); /* Slightly smaller max size */
+            height: clamp(120px, 30vw, 160px);
             background-color: rgba(100, 100, 100, 0.2);
             border-radius: 50%;
             position: relative;
@@ -103,9 +103,9 @@
             align-items: center;
         }
 
-        .virtual-pad-knob {
-            width: clamp(50px, 12vw, 70px); 
-            height: clamp(50px, 12vw, 70px);
+        .virtual-pad-knob { /* Only for move pad knob */
+            width: clamp(50px, 12vw, 60px); /* Slightly smaller max size */
+            height: clamp(50px, 12vw, 60px);
             background-color: rgba(50, 50, 50, 0.5);
             border-radius: 50%;
             position: absolute;
@@ -116,24 +116,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
-            height: 100%;
-            padding-right: 10px; 
+            justify-content: space-around; /* Distribute space for buttons */
+            height: 100%; /* Take full height of the container */
         }
 
         .action-button-touch {
-            width: clamp(60px, 15vw, 75px);
-            height: clamp(60px, 15vw, 75px);
+            width: clamp(65px, 18vw, 80px); /* Slightly larger buttons */
+            height: clamp(65px, 18vw, 80px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: clamp(12px, 3vw, 14px);
+            font-size: clamp(13px, 3.2vw, 15px);
             color: white;
             cursor: pointer;
             border: 2px solid;
             -webkit-tap-highlight-color: transparent;
-            margin: 5px 0;
+            margin: 8px 0; /* Increased margin */
         }
         #touchShootButton {
             background-color: rgba(248, 113, 113, 0.8); 
@@ -153,7 +152,7 @@
                 display: none;
             }
             #gameContainer {
-                padding-bottom: clamp(160px, 37vh, 230px); 
+                padding-bottom: clamp(170px, 39vh, 240px); /* Adjusted padding for controls */
             }
         }
         @media (pointer: fine) {
@@ -210,16 +209,13 @@
             <span id="pcStartInstruction">スペースキーでゲーム開始/リスタート。</span>
          </p>
          <p class="mt-1 text-xs md:text-sm text-gray-600">
-            タッチ操作: 左パッドで移動、右パッドでエイム、右の「塗る」ボタン長押しで連続発射。
+            タッチ操作: 左パッドで移動・エイム、右のボタンでアクション。
          </p>
     </div>
 
     <div id="touchControlsContainer">
         <div id="movePadArea" class="virtual-pad-area">
             <div id="movePadKnob" class="virtual-pad-knob"></div>
-        </div>
-        <div id="aimPadArea" class="virtual-pad-area">
-            <div id="aimPadKnob" class="virtual-pad-knob"></div>
         </div>
         <div id="actionButtonsRight">
             <div id="touchShootButton" class="action-button-touch">塗る</div>
@@ -248,8 +244,8 @@
         const INK_PROJECTILE_SPEED = 6;
         const INK_PROJECTILE_RADIUS = 4;
         const MAX_INK = 100;
-        const INK_COST_PER_SHOT = 5; // *** MODIFIED: Reduced ink cost ***
-        const INK_REFILL_RATE_NORMAL = 0.05; // *** NEW: Slow natural ink recovery ***
+        const INK_COST_PER_SHOT = 5; 
+        const INK_REFILL_RATE_NORMAL = 0.05; 
         const INK_REFILL_RATE_WHILE_SUBMERGED = 0.4; 
         const SHOT_COOLDOWN = 8; 
         const MAX_PROJECTILE_DISTANCE = 150; 
@@ -283,9 +279,9 @@
         let isGameOver = true;
         let animationFrameId;
         
-        let moveInput = { x: 0, y: 0, active: false, identifier: null };
-        let aimInput = { x: 0, y: 0, active: false, identifier: null };
-        let playerAimAngle = 0; 
+        let moveInput = { x: 0, y: 0, active: false, identifier: null, lastNonZeroX: 1, lastNonZeroY: 0 }; // Added lastNonZero for default aim
+        // let aimInput = { x: 0, y: 0, active: false, identifier: null }; // Removed aimInput
+        let playerAimAngle = 0; // Will be derived from moveInput or mouse
 
         let isTouchSubmergeActive = false;
         let isShooting = false; 
@@ -303,8 +299,8 @@
         
         const movePadArea = document.getElementById('movePadArea');
         const movePadKnob = document.getElementById('movePadKnob');
-        const aimPadArea = document.getElementById('aimPadArea');
-        const aimPadKnob = document.getElementById('aimPadKnob');
+        // const aimPadArea = document.getElementById('aimPadArea'); // Removed
+        // const aimPadKnob = document.getElementById('aimPadKnob'); // Removed
         const touchShootButtonElement = document.getElementById('touchShootButton'); 
         const touchSubmergeButtonElement = document.getElementById('touchSubmergeButton'); 
 
@@ -401,6 +397,8 @@
                     const length = Math.sqrt(dx * dx + dy * dy);
                     dx /= length;
                     dy /= length;
+                    moveInput.lastNonZeroX = dx; // Store last actual movement direction
+                    moveInput.lastNonZeroY = dy;
                 }
                 
                 let currentSpeedMultiplier = 1;
@@ -427,9 +425,16 @@
                     this.emerge();
                 }
 
-                if (aimInput.active) {
-                    playerAimAngle = Math.atan2(aimInput.y, aimInput.x);
-                } else if (!isTouchDevice()) { 
+                // Aiming logic
+                if (isTouchDevice()) {
+                    // On touch devices, aim based on moveInput's last known direction
+                    if (moveInput.active && (moveInput.x !== 0 || moveInput.y !== 0)) {
+                         playerAimAngle = Math.atan2(moveInput.y, moveInput.x);
+                    } else {
+                        // If not actively moving via pad, use the last non-zero direction
+                        playerAimAngle = Math.atan2(moveInput.lastNonZeroY, moveInput.lastNonZeroX);
+                    }
+                } else { // PC: use mouse
                     const canvasRect = gameCanvas.getBoundingClientRect();
                     if (canvasRect.width === 0 || canvasRect.height === 0) return; 
                     
@@ -696,8 +701,8 @@
             isTouchSubmergeActive = false;
             isShooting = false; 
             keysPressed = {}; 
-            moveInput = { x: 0, y: 0, active: false, identifier: null }; 
-            aimInput = { x: 0, y: 0, active: false, identifier: null };
+            moveInput = { x: 0, y: 0, active: false, identifier: null, lastNonZeroX: 1, lastNonZeroY: 0 }; 
+            // aimInput removed
             playerAimAngle = 0; 
 
             updateUI();
@@ -730,13 +735,12 @@
                 player.attemptShoot(); 
             }
 
-            // *** MODIFIED: Ink recovery logic ***
             if (player.isSubmerged && player.isOnOwnInk()) {
                 const currentCell = player.getCurrentGridCell();
                 if (!currentCell || currentCell.color !== ENEMY_COLOR) { 
                      currentInk = Math.min(MAX_INK, currentInk + INK_REFILL_RATE_WHILE_SUBMERGED);
                 }
-            } else if (!player.isSubmerged) { // Natural recovery if not submerged
+            } else if (!player.isSubmerged) { 
                  currentInk = Math.min(MAX_INK, currentInk + INK_REFILL_RATE_NORMAL);
             }
 
@@ -906,7 +910,8 @@
         }
 
         function drawVirtualPadKnobs() {
-            if (!isTouchDevice() || !movePadArea.offsetParent || !aimPadArea.offsetParent) return; 
+            // Only draw move pad knob if on touch device and controls are visible
+            if (!isTouchDevice() || !movePadArea.offsetParent ) return; 
 
             const moveRect = movePadArea.getBoundingClientRect();
             let knobMoveX = moveRect.width / 2;
@@ -917,16 +922,6 @@
             }
             movePadKnob.style.left = `${knobMoveX - movePadKnob.offsetWidth / 2}px`;
             movePadKnob.style.top = `${knobMoveY - movePadKnob.offsetHeight / 2}px`;
-            
-            const aimRect = aimPadArea.getBoundingClientRect();
-            let knobAimX = aimRect.width / 2;
-            let knobAimY = aimRect.height / 2;
-            if (aimInput.active) {
-                knobAimX += aimInput.x * (aimRect.width / 3.5);
-                knobAimY += aimInput.y * (aimRect.height / 3.5);
-            }
-            aimPadKnob.style.left = `${knobAimX - aimPadKnob.offsetWidth / 2}px`;
-            aimPadKnob.style.top = `${knobAimY - aimPadKnob.offsetHeight / 2}px`;
         }
 
 
@@ -959,8 +954,9 @@
                 const touch = event.changedTouches[i];
                 if (touch.identifier === padState.identifier) {
                     padState.active = false;
-                    padState.x = 0;
-                    padState.y = 0;
+                    // Don't reset x, y here to keep last direction for aiming if pad is released
+                    // padState.x = 0; 
+                    // padState.y = 0;
                     padState.identifier = null;
                     break;
                 }
@@ -991,10 +987,7 @@
         movePadArea.addEventListener('touchend', (e) => handlePadEnd(e, moveInput, movePadKnob), { passive: false });
         movePadArea.addEventListener('touchcancel', (e) => handlePadEnd(e, moveInput, movePadKnob), { passive: false });
 
-        aimPadArea.addEventListener('touchstart', (e) => handlePadStart(e, aimInput, aimPadKnob, aimPadArea), { passive: false });
-        aimPadArea.addEventListener('touchmove', (e) => handlePadMove(e, aimInput, aimPadKnob, aimPadArea), { passive: false });
-        aimPadArea.addEventListener('touchend', (e) => handlePadEnd(e, aimInput, aimPadKnob), { passive: false });
-        aimPadArea.addEventListener('touchcancel', (e) => handlePadEnd(e, aimInput, aimPadKnob), { passive: false });
+        // Aim Pad Listeners Removed
 
         touchShootButtonElement.addEventListener('touchstart', (e) => { 
             e.preventDefault();
