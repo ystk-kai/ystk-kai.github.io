@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="ja" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-story/branching-design" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">分岐設計書 | よるのうたかた</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ystk-kai.github.io/yoruuta/docs/docs/story/branching-design"><meta data-rh="true" property="og:locale" content="ja"><meta data-rh="true" name="docusaurus_locale" content="ja"><meta data-rh="true" name="docsearch:language" content="ja"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="分岐設計書 | よるのうたかた"><meta data-rh="true" name="description" content="目的"><meta data-rh="true" property="og:description" content="目的"><link data-rh="true" rel="icon" href="/yoruuta/docs/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ystk-kai.github.io/yoruuta/docs/docs/story/branching-design"><link data-rh="true" rel="alternate" href="https://ystk-kai.github.io/yoruuta/docs/docs/story/branching-design" hreflang="ja"><link data-rh="true" rel="alternate" href="https://ystk-kai.github.io/yoruuta/docs/docs/story/branching-design" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ストーリー","item":"https://ystk-kai.github.io/yoruuta/docs/docs/category/ストーリー"},{"@type":"ListItem","position":2,"name":"分岐設計書","item":"https://ystk-kai.github.io/yoruuta/docs/docs/story/branching-design"}]}</script><link rel="stylesheet" href="/yoruuta/docs/assets/css/styles.c6c79f8e.css">
+<script src="/yoruuta/docs/assets/js/runtime~main.4851a888.js" defer="defer"></script>
+<script src="/yoruuta/docs/assets/js/main.8af98efe.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"dark"),document.documentElement.setAttribute("data-theme-choice",t||"dark")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="メインコンテンツまでスキップ"><a class="skipToContent_stpX" href="#__docusaurus_skipToContent_fallback">メインコンテンツまでスキップ</a></div><nav aria-label="ナビゲーション" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="ナビゲーションバーを開く" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/yoruuta/docs/"><b class="navbar__title text--truncate">よるのうたかた</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/yoruuta/docs/docs/project/project-brief">ドキュメント</a><a class="navbar__item navbar__link" href="/yoruuta/docs/docs/story/scenario-flow">分岐マップ</a><a class="navbar__item navbar__link" href="/yoruuta/docs/docs/characters/character-map">人物相関図</a><a class="navbar__item navbar__link" href="/yoruuta/docs/docs/story/story-timeline">時系列マップ</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_Oedk colorModeToggle_G6dS"><button class="clean-btn toggleButton_dvFr toggleButtonDisabled_PpM1" type="button" disabled="" title="システムモード" aria-label="ダークモードを切り替える(現在はシステムモード)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_oK4m lightToggleIcon_muva"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_oK4m darkToggleIcon_hqQz"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_oK4m systemToggleIcon_tn1U"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_M982"><div class="navbar__search searchBarContainer_AhBB" dir="ltr"><input placeholder="検索" aria-label="Search" class="navbar__search-input searchInput_u6pA" value=""><div class="loadingRing_mMBz searchBarLoadingRing_zGVg"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_bwxn"><div class="docsWrapper_yA0O"><button aria-label="先頭へ戻る" class="clean-btn theme-back-to-top-button backToTopButton_Xwik" type="button"></button><div class="docRoot_oh8m"><aside class="theme-doc-sidebar-container docSidebarContainer_GwVL"><div class="sidebarViewport_pOc7"><div class="sidebar_ArGQ"><nav aria-label="ドキュメントのサイドバー" class="menu thin-scrollbar menu__n3M"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/yoruuta/docs/docs/project/project-brief"><span title="企画概要" class="categoryLinkLabel_NLFE">企画概要</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/project/project-brief"><span title="企画書" class="linkLabel_WhwO">企画書</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/project/personas"><span title="検証ペルソナ定義" class="linkLabel_WhwO">検証ペルソナ定義</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--active" href="/yoruuta/docs/docs/category/ストーリー"><span title="ストーリー" class="categoryLinkLabel_NLFE">ストーリー</span></a><button aria-label="&#x27;ストーリー&#x27;の目次を隠す" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/story-design"><span title="全体設計" class="categoryLinkLabel_NLFE">全体設計</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/story-design"><span title="ストーリー設計書" class="linkLabel_WhwO">ストーリー設計書</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/story-treatment"><span title="ストーリートリートメント" class="linkLabel_WhwO">ストーリートリートメント</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/prologue-design"><span title="プロローグ設計" class="linkLabel_WhwO">プロローグ設計</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/emotional-depth-design"><span title="感情深度の改善設計" class="linkLabel_WhwO">感情深度の改善設計</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/branching-design"><span title="分岐・ルート" class="categoryLinkLabel_NLFE">分岐・ルート</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/yoruuta/docs/docs/story/branching-design"><span title="分岐設計書" class="linkLabel_WhwO">分岐設計書</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/route-synopses"><span title="ルート概要" class="linkLabel_WhwO">ルート概要</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/chapter-outline"><span title="シーン構成" class="categoryLinkLabel_NLFE">シーン構成</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/chapter-outline"><span title="章イベント詳細" class="linkLabel_WhwO">章イベント詳細</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/scene-breakdown"><span title="シーン分解表" class="linkLabel_WhwO">シーン分解表</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/scenario-balance"><span title="シナリオバランス設計" class="linkLabel_WhwO">シナリオバランス設計</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/foreshadow-payoff-map"><span title="対応表" class="categoryLinkLabel_NLFE">対応表</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/foreshadow-payoff-map"><span title="伏線・回収対応表" class="linkLabel_WhwO">伏線・回収対応表</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/scene-direction-map"><span title="演出対応表" class="linkLabel_WhwO">演出対応表</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/scenario-style-guide"><span title="制作ガイド" class="categoryLinkLabel_NLFE">制作ガイド</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/scenario-style-guide"><span title="シナリオ表記ガイド" class="linkLabel_WhwO">シナリオ表記ガイド</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/festival-performance-design"><span title="文化祭上演企画設計" class="linkLabel_WhwO">文化祭上演企画設計</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/minigame-collection-design"><span title="ミニゲーム収集設計" class="linkLabel_WhwO">ミニゲーム収集設計</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist" href="/yoruuta/docs/docs/characters/"><span title="キャラクター" class="categoryLinkLabel_NLFE">キャラクター</span></a><button aria-label="&#x27;キャラクター&#x27;の目次を隠す" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/_overview"><span title="キャラクター設計 概要" class="linkLabel_WhwO">キャラクター設計 概要</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/characters/saku"><span title="メインキャラクター" class="categoryLinkLabel_NLFE">メインキャラクター</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/saku"><span title="久瀬 朔（くぜ さく）" class="linkLabel_WhwO">久瀬 朔（くぜ さく）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/saya"><span title="綾瀬川 咲夜（あやせがわ さや）" class="linkLabel_WhwO">綾瀬川 咲夜（あやせがわ さや）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/chihiro"><span title="四辻 千紘（よつつじ ちひろ）" class="linkLabel_WhwO">四辻 千紘（よつつじ ちひろ）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/yuzuki"><span title="穂坂 結月（ほさか ゆづき）" class="linkLabel_WhwO">穂坂 結月（ほさか ゆづき）</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/characters/minato"><span title="サブキャラクター" class="categoryLinkLabel_NLFE">サブキャラクター</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/minato"><span title="七瀬 湊（ななせ みなと）" class="linkLabel_WhwO">七瀬 湊（ななせ みなと）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/iroha"><span title="御子柴 いろは（みこしば いろは）" class="linkLabel_WhwO">御子柴 いろは（みこしば いろは）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/akari"><span title="柊 あかり（ひいらぎ あかり）" class="linkLabel_WhwO">柊 あかり（ひいらぎ あかり）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/mizuki"><span title="水城 真琴（みずき まこと）" class="linkLabel_WhwO">水城 真琴（みずき まこと）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/maho"><span title="久瀬 真帆（くぜ まほ）" class="linkLabel_WhwO">久瀬 真帆（くぜ まほ）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/nagi"><span title="白瀬 凪（しらせ なぎ）" class="linkLabel_WhwO">白瀬 凪（しらせ なぎ）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/koichi"><span title="四辻 恒一（よつつじ こういち）" class="linkLabel_WhwO">四辻 恒一（よつつじ こういち）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/miyako"><span title="穂坂 美弥子（ほさか みやこ）" class="linkLabel_WhwO">穂坂 美弥子（ほさか みやこ）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/kotoha"><span title="椎葉 殊羽（しいば ことは）" class="linkLabel_WhwO">椎葉 殊羽（しいば ことは）</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/visual-design-spec"><span title="ビジュアル仕様書" class="linkLabel_WhwO">ビジュアル仕様書</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/yoruuta/docs/docs/architecture/docs-architecture"><span title="アーキテクチャ" class="categoryLinkLabel_NLFE">アーキテクチャ</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/architecture/docs-architecture"><span title="運用方針" class="categoryLinkLabel_NLFE">運用方針</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/docs-architecture"><span title="ドキュメント運用方針" class="linkLabel_WhwO">ドキュメント運用方針</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/scenario-directory-architecture"><span title="シナリオディレクトリ設計" class="linkLabel_WhwO">シナリオディレクトリ設計</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/architecture/asset-id-list"><span title="技術仕様" class="categoryLinkLabel_NLFE">技術仕様</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/asset-id-list"><span title="アセットID一覧" class="linkLabel_WhwO">アセットID一覧</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/effects-and-transitions"><span title="エフェクト・トランジション定義" class="linkLabel_WhwO">エフェクト・トランジション定義</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/minigame-system-architecture"><span title="ミニゲーム実装設計" class="linkLabel_WhwO">ミニゲーム実装設計</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/yoruuta/docs/docs/reviews/review-round-01"><span title="アーカイブ" class="categoryLinkLabel_NLFE">アーカイブ</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_H2W_"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_owJg"><div class="docItemContainer_FjmL"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_kmwc" aria-label="パンくずリストのナビゲーション"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="ホームページ" class="breadcrumbs__link" href="/yoruuta/docs/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_motE"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/yoruuta/docs/docs/category/ストーリー"><span>ストーリー</span></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">分岐・ルート</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">分岐設計書</span></li></ul></nav><div class="tocCollapsible_zDGt theme-doc-toc-mobile tocMobile_DSEa"><button type="button" class="clean-btn tocCollapsibleButton_ngcJ">このページの見出し</button></div><div class="theme-doc-markdown markdown"><header><h1>分岐設計書</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="目的">目的<a href="#目的" class="hash-link" aria-label="目的 への直接リンク" title="目的 への直接リンク" translate="no">​</a></h2>
+<p>本資料は、共通ルートから個別ルート、BAD END への分岐条件を定義する。
+好感度だけでなく、主人公が誰の夜にどう関わったかを分岐条件に含める。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="設計方針">設計方針<a href="#設計方針" class="hash-link" aria-label="設計方針 への直接リンク" title="設計方針 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="基本原則-蓄積型ルート決定">基本原則: 蓄積型ルート決定<a href="#基本原則-蓄積型ルート決定" class="hash-link" aria-label="基本原則: 蓄積型ルート決定 への直接リンク" title="基本原則: 蓄積型ルート決定 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>ルートはプレイヤーの明示的な選択ではなく、蓄積された好感度・信頼・関わりの結果として自然に決まる</strong></li>
+<li class="">「誰を追うか」ではなく「どう向き合ってきたか」がルートを決める</li>
+<li class="">プレイヤーは「気がついたらこの人のそばにいた」と感じるべきである</li>
+<li class="">分岐は恋愛選択であると同時に、関わり方の選択である</li>
+<li class="">正解選択の積み上げではなく、相手に合った支え方を選べるかを問う</li>
+<li class="">BAD END は、相手を傷つける明確な失敗として設計する</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="第4章の選択-態度の選択であり人の選択ではない">第4章の選択: 態度の選択であり、人の選択ではない<a href="#第4章の選択-態度の選択であり人の選択ではない" class="hash-link" aria-label="第4章の選択: 態度の選択であり、人の選択ではない への直接リンク" title="第4章の選択: 態度の選択であり、人の選択ではない への直接リンク" translate="no">​</a></h3>
+<p>第4章の崩壊後、プレイヤーに提示される選択は「誰を追うか」ではなく「この状況にどう向き合うか」という態度の選択である。この選択は好感度を微調整し、<code>project_intact</code> に影響するが、ルートを直接決定しない。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="管理する主要値">管理する主要値<a href="#管理する主要値" class="hash-link" aria-label="管理する主要値 への直接リンク" title="管理する主要値 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="共通値">共通値<a href="#共通値" class="hash-link" aria-label="共通値 への直接リンク" title="共通値 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><code>affinity_saya</code></li>
+<li class=""><code>affinity_chihiro</code></li>
+<li class=""><code>affinity_yuzuki</code></li>
+<li class=""><code>affinity_akari</code></li>
+<li class=""><code>trust_saya_step1</code></li>
+<li class=""><code>trust_chihiro_step1</code></li>
+<li class=""><code>trust_yuzuki_step1</code></li>
+<li class=""><code>trust_akari_step1</code></li>
+<li class=""><code>saw_core_a</code></li>
+<li class=""><code>saw_core_b</code></li>
+<li class=""><code>saw_core_c</code></li>
+<li class=""><code>saw_core_akari</code></li>
+<li class=""><code>project_intact</code></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="分岐用の意味">分岐用の意味<a href="#分岐用の意味" class="hash-link" aria-label="分岐用の意味 への直接リンク" title="分岐用の意味 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><code>affinity_*</code>
+<ul>
+<li class="">共通ルート全体の積み上げ。継続して相手に合った反応を選べたかを見る</li>
+</ul>
+</li>
+<li class=""><code>trust_*_step1</code>
+<ul>
+<li class="">第3章で、その相手の痛みに対して踏み込み方を誤らなかったかを見る</li>
+</ul>
+</li>
+<li class=""><code>saw_core_*</code>
+<ul>
+<li class="">その相手の傷の核心を、主人公が一度でも目撃したか</li>
+</ul>
+</li>
+<li class=""><code>project_intact</code>
+<ul>
+<li class="">第4章で主人公が企画を人より優先していないかを見る</li>
+</ul>
+</li>
+<li class=""><code>affinity_akari / trust_akari_step1 / saw_core_akari</code>
+<ul>
+<li class="">fallback 用の補助導線。メインヒロイン不成立時に、外側から企画を支える相手を見ていたかを測る</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="数値設計">数値設計<a href="#数値設計" class="hash-link" aria-label="数値設計 への直接リンク" title="数値設計 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="共通ルートの最大値">共通ルートの最大値<a href="#共通ルートの最大値" class="hash-link" aria-label="共通ルートの最大値 への直接リンク" title="共通ルートの最大値 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><code>affinity_saya</code>: 10</li>
+<li class=""><code>affinity_chihiro</code>: 8</li>
+<li class=""><code>affinity_yuzuki</code>: 8</li>
+<li class=""><code>affinity_akari</code>: 3</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="サブストーリーによる好感度効果">サブストーリーによる好感度効果<a href="#サブストーリーによる好感度効果" class="hash-link" aria-label="サブストーリーによる好感度効果 への直接リンク" title="サブストーリーによる好感度効果 への直接リンク" translate="no">​</a></h3>
+<p>サブキャラクターとのイベントが、間接的にヒロインの好感度に影響する。</p>
+<table><thead><tr><th>サブストーリー</th><th>挿入位置</th><th>好感度効果</th><th>説明</th></tr></thead><tbody><tr><td>湊 sub_01</td><td>ch01後</td><td>yuzuki +1</td><td>湊との会話で結月が話題に出る。結月への理解が深まる</td></tr><tr><td>湊 sub_02</td><td>ch03後</td><td>（trust洞察）</td><td>放送室シーン。trust に関わる情報が得られる可能性</td></tr><tr><td>湊 sub_03</td><td>ch04後</td><td>project_intact 補強</td><td>紙コップのシーン。企画への向き合い方を再確認</td></tr><tr><td>いろは sub_04</td><td>ch02後</td><td>saya +1</td><td>いろはの観察を通じて咲夜の内面を知る</td></tr><tr><td>いろは sub_05</td><td>ch04後</td><td>chihiro +1</td><td>照明プランのメモ。千紘の企画への想いの痕跡</td></tr><tr><td>水城先生 sub_06</td><td>ch03後</td><td>saw_core 補助</td><td>先生の言葉がヒロインの核心を理解する助けになる</td></tr><tr><td>水城先生 sub_07</td><td>千紘ルート後</td><td>（ルート内補強）</td><td>大人の距離感が千紘ルートを補強</td></tr><tr><td>あかり sub_08</td><td>ch03後</td><td>akari +2 / trust</td><td>結月に近い立場から「優しさの危うさ」を指摘し、支える側の視点を開く</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="分岐に使う閾値二段階判定">分岐に使う閾値（二段階判定）<a href="#分岐に使う閾値二段階判定" class="hash-link" aria-label="分岐に使う閾値（二段階判定） への直接リンク" title="分岐に使う閾値（二段階判定） への直接リンク" translate="no">​</a></h3>
+<p>分岐判定は以下の二段階で行う。</p>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="第一段階-ルート進入の最低条件">第一段階: ルート進入の最低条件<a href="#第一段階-ルート進入の最低条件" class="hash-link" aria-label="第一段階: ルート進入の最低条件 への直接リンク" title="第一段階: ルート進入の最低条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>affinity_saya &gt;= 3</code></li>
+<li class=""><code>affinity_chihiro &gt;= 3</code></li>
+<li class=""><code>affinity_yuzuki &gt;= 3</code></li>
+</ul>
+<p>この閾値を下回ると、trust や saw_core の状態に関わらずルート不成立になる。</p>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="第二段階-trust-不要のショートカット条件">第二段階: trust 不要のショートカット条件<a href="#第二段階-trust-不要のショートカット条件" class="hash-link" aria-label="第二段階: trust 不要のショートカット条件 への直接リンク" title="第二段階: trust 不要のショートカット条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>affinity_saya &gt;= 6</code></li>
+<li class=""><code>affinity_chihiro &gt;= 6</code></li>
+<li class=""><code>affinity_yuzuki &gt;= 6</code></li>
+</ul>
+<p>この閾値を超えていれば、<code>trust_*_step1</code> の判定をスキップしてルートに進入できる。
+共通ルートで十分に寄り添い続けたプレイヤーへの救済導線として機能する。</p>
+<p>この二段階設計は、</p>
+<ul>
+<li class="">最低限の関わりを持たなければルートに入れない</li>
+<li class="">ただし高い信頼があれば、特定の選択肢を逃しても到達できる</li>
+<li class="">メイン導線を外しすぎると届かない</li>
+</ul>
+<p>というバランスを狙っている。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="ルート決定アルゴリズム">ルート決定アルゴリズム<a href="#ルート決定アルゴリズム" class="hash-link" aria-label="ルート決定アルゴリズム への直接リンク" title="ルート決定アルゴリズム への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="概要">概要<a href="#概要" class="hash-link" aria-label="概要 への直接リンク" title="概要 への直接リンク" translate="no">​</a></h3>
+<p>第4章の崩壊後、以下の手順でルートを自動決定する。プレイヤーに「誰を選ぶか」は問わない。</p>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="判定フロー">判定フロー<a href="#判定フロー" class="hash-link" aria-label="判定フロー への直接リンク" title="判定フロー への直接リンク" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_fl7n theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_BVhO"><pre tabindex="0" class="prism-code language-text codeBlock_lhPh thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6nU"><span class="token-line" style="color:#F8F8F2"><span class="token plain">1. project_intact チェック</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   → false なら route_fail（共通BAD）</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">2. 各ヒロインの資格判定</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   以下のすべてを満たすヒロインを「資格あり」とする:</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   a. affinity_X &gt;= 3（最低条件）</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   b. trust_X_step1 = true OR affinity_X &gt;= 6（信頼ゲート）</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   c. saw_core_X = true（核心の目撃）</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">3. 資格ありヒロインが0人 → Akari fallback 判定へ</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">4. `affinity_akari &gt;= 2` かつ `trust_akari_step1 = true` かつ `saw_core_akari = true`</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   → あかりEND</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">5. あかり条件を満たさない場合、</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   全ヒロイン `affinity &gt;= 3` かつ `saw_core` 全取得</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   → 友情END</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">6. 上記も満たさない → route_fail（共通BAD）</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">7. 資格ありヒロインが1人 → そのヒロインのルートへ</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">8. 資格ありヒロインが複数 → 最も好感度が高いヒロインのルートへ</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">9. 好感度が同率 → trust_step1 を持つ方を優先</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   （trustは「第3章で正しく踏み込めた」ことを意味し、より深い関わりの証）</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">10. それでも同率 → saw_core の取得順序で判定</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   （先に核心を見た = より早く相手の内面に触れた）</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">11. 全ヒロインが高水準で資格あり → true_route_flag をセット</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">   （3ルートクリア後のTrue Route解放条件の一部として使用可能）</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="実装上の注意">実装上の注意<a href="#実装上の注意" class="hash-link" aria-label="実装上の注意 への直接リンク" title="実装上の注意 への直接リンク" translate="no">​</a></h3>
+<p>エンジンの <code>@if</code> は単一条件のみサポートするため、複合条件判定はラベルチェーンで実装する。
+各ヒロインの資格チェックを段階的に行い、資格ありヒロインの好感度を比較してルートを決定する。</p>
+<p>具体的な <code>@if</code> チェーンの実装は <code>scene_04_route_split.md</code> を参照。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="共通ルートの主要選択">共通ルートの主要選択<a href="#共通ルートの主要選択" class="hash-link" aria-label="共通ルートの主要選択 への直接リンク" title="共通ルートの主要選択 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="第0章">第0章<a href="#第0章" class="hash-link" aria-label="第0章 への直接リンク" title="第0章 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">好感度に影響する選択肢は置かない</li>
+<li class="">演出的選択（結果が合流する選択肢）は操作感の維持のために許容する</li>
+<li class="">まずは作品の空気と、主人公の基本姿勢を線形で見せる</li>
+<li class="">分岐管理は第1章以降から始める</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="第1章">第1章<a href="#第1章" class="hash-link" aria-label="第1章 への直接リンク" title="第1章 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>Bの強い言葉に、言い返すか、受け流すか、論点だけ拾うか</p>
+</li>
+<li class="">
+<p>推奨は「感情で返さず、論点だけ拾う」</p>
+</li>
+<li class="">
+<p>Bは対等さに敏感なので、哀れみは減点になる</p>
+</li>
+<li class="">
+<p>Cの無気力な態度に、励ますか、放置するか、隣に座るか</p>
+</li>
+<li class="">
+<p>推奨は「励ましすぎず、同じ場所にいる」</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="第2章">第2章<a href="#第2章" class="hash-link" aria-label="第2章 への直接リンク" title="第2章 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">企画の役割分担で誰に肩入れするか</li>
+<li class="">共通ルートの信頼加算を複数回入れる</li>
+<li class="">ここでは露骨な恋愛選択ではなく、実務上の寄り添い方として見せる</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="第3章">第3章<a href="#第3章" class="hash-link" aria-label="第3章 への直接リンク" title="第3章 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">Aの未完成原稿に対して、感想を急ぐか、返答を保留するか</li>
+<li class="">Bの怒りに対して、正論で押すか、怒りの原因を待つか</li>
+<li class="">Cの諦めに対して、未来を語るか、現在の感覚を聞くか</li>
+</ul>
+<p>この章から、各ヒロインの核心を見るイベントに到達可能にする。</p>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="第4章態度の選択">第4章（態度の選択）<a href="#第4章態度の選択" class="hash-link" aria-label="第4章（態度の選択） への直接リンク" title="第4章（態度の選択） への直接リンク" translate="no">​</a></h3>
+<p>崩壊後の選択肢は「誰を追うか」ではなく「状況にどう向き合うか」を問う。</p>
+<ul>
+<li class="">「企画書を取り戻しに行く」 → project_intact 維持 / 好感度微減のリスク</li>
+<li class="">「……少し、頭を冷やそう」 → 冷静さによる好感度微増 / project_intact = true（冷静に考えた結果、企画を手放さない再確認に至る）</li>
+<li class="">「今は、みんなの方が大事だ」 → 好感度微増 / project_intact を false にするリスク</li>
+</ul>
+<p>これらの選択は好感度を ±1 程度調整し、<code>project_intact</code> に影響するが、ルートを直接決定しない。ルートは蓄積された好感度の総合値で自動決定される。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="ルート分岐条件">ルート分岐条件<a href="#ルート分岐条件" class="hash-link" aria-label="ルート分岐条件 への直接リンク" title="ルート分岐条件 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="aルート咲夜">Aルート（咲夜）<a href="#aルート咲夜" class="hash-link" aria-label="Aルート（咲夜） への直接リンク" title="Aルート（咲夜） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="必須条件">必須条件<a href="#必須条件" class="hash-link" aria-label="必須条件 への直接リンク" title="必須条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>affinity_saya &gt;= 3</code>（最低条件）</li>
+<li class=""><code>affinity_saya &gt;= 6</code> または <code>trust_saya_step1 = true</code>（二段階判定）</li>
+<li class=""><code>saw_core_a = true</code></li>
+<li class=""><code>project_intact = true</code></li>
+<li class=""><strong>他のヒロインより高い好感度、または同率時のタイブレーク優先</strong></li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="ルート選択の意味">ルート選択の意味<a href="#ルート選択の意味" class="hash-link" aria-label="ルート選択の意味 への直接リンク" title="ルート選択の意味 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">主人公が「声を出せない相手に、結果を急がず付き合う」ことを選んだ</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="bルート千紘">Bルート（千紘）<a href="#bルート千紘" class="hash-link" aria-label="Bルート（千紘） への直接リンク" title="Bルート（千紘） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="必須条件-1">必須条件<a href="#必須条件-1" class="hash-link" aria-label="必須条件 への直接リンク" title="必須条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>affinity_chihiro &gt;= 3</code>（最低条件）</li>
+<li class=""><code>affinity_chihiro &gt;= 6</code> または <code>trust_chihiro_step1 = true</code>（二段階判定）</li>
+<li class=""><code>saw_core_b = true</code></li>
+<li class=""><code>project_intact = true</code></li>
+<li class=""><strong>他のヒロインより高い好感度、または同率時のタイブレーク優先</strong></li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="ルート選択の意味-1">ルート選択の意味<a href="#ルート選択の意味-1" class="hash-link" aria-label="ルート選択の意味 への直接リンク" title="ルート選択の意味 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">主人公が「拒絶されても関係を切らず、対等に向き合う」ことを選んだ</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="cルート結月">Cルート（結月）<a href="#cルート結月" class="hash-link" aria-label="Cルート（結月） への直接リンク" title="Cルート（結月） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="必須条件-2">必須条件<a href="#必須条件-2" class="hash-link" aria-label="必須条件 への直接リンク" title="必須条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>affinity_yuzuki &gt;= 3</code>（最低条件）</li>
+<li class=""><code>affinity_yuzuki &gt;= 6</code> または <code>trust_yuzuki_step1 = true</code>（二段階判定）</li>
+<li class=""><code>saw_core_c = true</code></li>
+<li class=""><code>project_intact = true</code></li>
+<li class=""><strong>他のヒロインより高い好感度、または同率時のタイブレーク優先</strong></li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="ルート選択の意味-2">ルート選択の意味<a href="#ルート選択の意味-2" class="hash-link" aria-label="ルート選択の意味 への直接リンク" title="ルート選択の意味 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">主人公が「答えを急がず、失速した心に付き添う」ことを選んだ</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="あかりend">あかりEND<a href="#あかりend" class="hash-link" aria-label="あかりEND への直接リンク" title="あかりEND への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="必須条件-3">必須条件<a href="#必須条件-3" class="hash-link" aria-label="必須条件 への直接リンク" title="必須条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">メイン3ヒロインがいずれもルート不成立</li>
+<li class=""><code>affinity_akari &gt;= 2</code></li>
+<li class=""><code>trust_akari_step1 = true</code></li>
+<li class=""><code>saw_core_akari = true</code></li>
+<li class=""><code>project_intact = true</code></li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="ルート選択の意味-3">ルート選択の意味<a href="#ルート選択の意味-3" class="hash-link" aria-label="ルート選択の意味 への直接リンク" title="ルート選択の意味 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">主人公が「舞台の外で支えていた相手」を見落とさず、企画の残し方そのものを共有できた</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="友情end">友情END<a href="#友情end" class="hash-link" aria-label="友情END への直接リンク" title="友情END への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="必須条件-4">必須条件<a href="#必須条件-4" class="hash-link" aria-label="必須条件 への直接リンク" title="必須条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">メイン3ヒロインがいずれもルート不成立</li>
+<li class=""><code>affinity_saya &gt;= 3</code></li>
+<li class=""><code>affinity_chihiro &gt;= 3</code></li>
+<li class=""><code>affinity_yuzuki &gt;= 3</code></li>
+<li class=""><code>saw_core_a = true</code></li>
+<li class=""><code>saw_core_b = true</code></li>
+<li class=""><code>saw_core_c = true</code></li>
+<li class=""><code>project_intact = true</code></li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="ルート選択の意味-4">ルート選択の意味<a href="#ルート選択の意味-4" class="hash-link" aria-label="ルート選択の意味 への直接リンク" title="ルート選択の意味 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">主人公が誰か一人を選ぶことはしなかったが、全員の夜を見なかったことにはしなかった</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="ルート不成立条件">ルート不成立条件<a href="#ルート不成立条件" class="hash-link" aria-label="ルート不成立条件 への直接リンク" title="ルート不成立条件 への直接リンク" translate="no">​</a></h2>
+<ul>
+<li class=""><code>project_intact = false</code>（企画を人より優先した）</li>
+<li class="">どのヒロインも資格条件を満たさず、あかりEND / 友情END の条件にも届かない</li>
+<li class="">共通ルート全体で曖昧な態度を取り続け、誰の好感度も十分に上がらなかった</li>
+</ul>
+<p>この場合は共通BAD、またはノーマルな未到達エンドを用意する。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="bad-end-設計">BAD END 設計<a href="#bad-end-設計" class="hash-link" aria-label="BAD END 設計 への直接リンク" title="BAD END 設計 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="a系-bad">A系 BAD<a href="#a系-bad" class="hash-link" aria-label="A系 BAD への直接リンク" title="A系 BAD への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="原因">原因<a href="#原因" class="hash-link" aria-label="原因 への直接リンク" title="原因 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">本人の準備ができていないのに発表を急がせる</li>
+<li class="">過去の失敗を勝手に美談化する</li>
+<li class="">企画成功のためにAの声を消費する</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="結果">結果<a href="#結果" class="hash-link" aria-label="結果 への直接リンク" title="結果 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">Aが完全に沈黙する</li>
+<li class="">主人公は「届けばいいわけではない」と知る</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="b系-bad">B系 BAD<a href="#b系-bad" class="hash-link" aria-label="B系 BAD への直接リンク" title="B系 BAD への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="原因-1">原因<a href="#原因-1" class="hash-link" aria-label="原因 への直接リンク" title="原因 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">Bを弱い立場として扱いすぎる</li>
+<li class="">家庭問題へ無断で介入する</li>
+<li class="">怒りを落ち着かせることだけを優先する</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="結果-1">結果<a href="#結果-1" class="hash-link" aria-label="結果 への直接リンク" title="結果 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">Bは主人公を切り捨てる</li>
+<li class="">企画も関係も壊れ、怒りだけが残る</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="c系-bad">C系 BAD<a href="#c系-bad" class="hash-link" aria-label="C系 BAD への直接リンク" title="C系 BAD への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="原因-2">原因<a href="#原因-2" class="hash-link" aria-label="原因 への直接リンク" title="原因 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">「頑張れ」で押す</li>
+<li class="">希望を押しつける</li>
+<li class="">諦めを理解したふりだけして放置する</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="結果-2">結果<a href="#結果-2" class="hash-link" aria-label="結果 への直接リンク" title="結果 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">Cは静かにいなくなる</li>
+<li class="">主人公は見失ったことに後から気づく</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="共通bad">共通BAD<a href="#共通bad" class="hash-link" aria-label="共通BAD への直接リンク" title="共通BAD への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="原因-3">原因<a href="#原因-3" class="hash-link" aria-label="原因 への直接リンク" title="原因 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">3人の心より企画の体裁を優先する</li>
+<li class="">噂や外圧に流される</li>
+<li class="">何も決めず先延ばしにする</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="結果-3">結果<a href="#結果-3" class="hash-link" aria-label="結果 への直接リンク" title="結果 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">企画は中止</li>
+<li class="">誰の夜にも触れられないまま終わる</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="ルート内-bad-end-トリガー条件">ルート内 BAD END トリガー条件<a href="#ルート内-bad-end-トリガー条件" class="hash-link" aria-label="ルート内 BAD END トリガー条件 への直接リンク" title="ルート内 BAD END トリガー条件 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="a系-badscene_bad_silence">A系 BAD（scene_bad_silence）<a href="#a系-badscene_bad_silence" class="hash-link" aria-label="A系 BAD（scene_bad_silence） への直接リンク" title="A系 BAD（scene_bad_silence） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="トリガーとなる選択">トリガーとなる選択<a href="#トリガーとなる選択" class="hash-link" aria-label="トリガーとなる選択 への直接リンク" title="トリガーとなる選択 への直接リンク" translate="no">​</a></h4>
+<ol>
+<li class=""><code>scene_02_nagi_trace</code>: 「悪気はなかったんだろ」を選択 → <code>saya_route_misread_past = true</code>, <code>affinity_saya -1</code></li>
+<li class=""><code>scene_04_stage_side</code>: 「みんな待ってる。出よう」を選択 → <code>saya_route_forced_stage = true</code>, <code>affinity_saya -2</code></li>
+</ol>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="分岐パス">分岐パス<a href="#分岐パス" class="hash-link" aria-label="分岐パス への直接リンク" title="分岐パス への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scene_04_stage_side</code> の <code>stage_side_force</code> ラベルから <code>bad_end</code> → <code>scene_bad_silence</code> へ遷移</li>
+<li class="">過去を美談化した上で声を消費する選択が重なることで、咲夜の核心の傷（声で人を傷つけた経験）を再現してしまう</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="シーンファイル">シーンファイル<a href="#シーンファイル" class="hash-link" aria-label="シーンファイル への直接リンク" title="シーンファイル への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scenarios/chapter_11_saya_route/scene_bad_silence.md</code></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="b系-badscene_bad_severed">B系 BAD（scene_bad_severed）<a href="#b系-badscene_bad_severed" class="hash-link" aria-label="B系 BAD（scene_bad_severed） への直接リンク" title="B系 BAD（scene_bad_severed） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="トリガーとなる選択-1">トリガーとなる選択<a href="#トリガーとなる選択-1" class="hash-link" aria-label="トリガーとなる選択 への直接リンク" title="トリガーとなる選択 への直接リンク" translate="no">​</a></h4>
+<ol>
+<li class=""><code>scene_03_scope</code>: 範囲を明示せず曖昧な善意で引き受けようとする → <code>chihiro_route_vague_support = true</code>（暗黙的に scope_fail の冒頭で発生）</li>
+<li class=""><code>scene_04_next_day</code>: 「先輩の分も俺がやりますから」を選択 → <code>chihiro_route_kindness_trap = true</code>, <code>affinity_chihiro -2</code></li>
+</ol>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="分岐パス-1">分岐パス<a href="#分岐パス-1" class="hash-link" aria-label="分岐パス への直接リンク" title="分岐パス への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scene_04_next_day</code> の <code>absorb_role</code> ラベルから <code>bad_end</code> → <code>scene_bad_severed</code> へ遷移</li>
+<li class="">千紘の仕事を善意で取り上げることが、「弱い人間を黙らせる」のと同じ構造であることに気づけない</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="シーンファイル-1">シーンファイル<a href="#シーンファイル-1" class="hash-link" aria-label="シーンファイル への直接リンク" title="シーンファイル への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scenarios/chapter_12_chihiro_route/scene_bad_severed.md</code></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="c系-badscene_bad_vanish">C系 BAD（scene_bad_vanish）<a href="#c系-badscene_bad_vanish" class="hash-link" aria-label="C系 BAD（scene_bad_vanish） への直接リンク" title="C系 BAD（scene_bad_vanish） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="トリガーとなる選択-2">トリガーとなる選択<a href="#トリガーとなる選択-2" class="hash-link" aria-label="トリガーとなる選択 への直接リンク" title="トリガーとなる選択 への直接リンク" translate="no">​</a></h4>
+<ol>
+<li class=""><code>scene_01_follow</code>: 「まだ次があるよ」を選択 → <code>yuzuki_route_pushed_future = true</code>, <code>affinity_yuzuki -1</code>、または「もったいなかったな」を選択 → <code>yuzuki_route_trivialized_loss = true</code>, <code>affinity_yuzuki -2</code></li>
+<li class=""><code>scene_03_small_reading</code>: 「読めば、きっと何か変わるよ」または「無理ならやめてもいい」を選択 → <code>affinity_yuzuki -2</code> / <code>-1</code></li>
+</ol>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="分岐パス-2">分岐パス<a href="#分岐パス-2" class="hash-link" aria-label="分岐パス への直接リンク" title="分岐パス への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scene_03_small_reading</code> の <code>push_change</code> / <code>allow_quit</code> ラベルから <code>bad_end</code> → <code>scene_bad_vanish</code> へ遷移</li>
+<li class="">「頑張れ」も「やめていい」も、結月にとっては自分で選ぶ機会を奪われることに等しい</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="シーンファイル-2">シーンファイル<a href="#シーンファイル-2" class="hash-link" aria-label="シーンファイル への直接リンク" title="シーンファイル への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scenarios/chapter_13_yuzuki_route/scene_bad_vanish.md</code></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="隠しend-条件">隠しEND 条件<a href="#隠しend-条件" class="hash-link" aria-label="隠しEND 条件 への直接リンク" title="隠しEND 条件 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="共通設計方針">共通設計方針<a href="#共通設計方針" class="hash-link" aria-label="共通設計方針 への直接リンク" title="共通設計方針 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">隠しENDは通常GOOD ENDの後日談として挿入される</li>
+<li class="">通常ENDをクリアした上で、高好感度 + 全信頼フラグ + 特定条件を満たしている場合にのみ到達可能</li>
+<li class="">シーン冒頭の <code>@if</code> チェーンで条件不足の場合は通常ENDに戻す</li>
+<li class="">隠しENDは「ご褒美」ではなく「この関係の先に何があるか」を見せるエピローグ</li>
+<li class="">副次ヒロインの隠しENDは、通常ENDを上書きする別勝利条件にしない</li>
+<li class="">副次ヒロインの隠しENDは「そのルートで外側にいた支え手を見る」ための補助的エピローグとして扱う</li>
+<li class="">したがって、本編ヒロインの感情決着が終わったあとにのみ開く</li>
+<li class="">泣きや感動の核は <code>人気サブキャラへのご褒美</code> ではなく、<code>支えていた側の喪失 / 献身 / 置き去りにした時間の回収</code> に置く</li>
+<li class="">最後は大きな告白より、<code>ようやくその人自身が見られた</code> という静かな受け取りで締める</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="a隠しend声の行方scene_hidden_voice">A隠しEND「声の行方」（scene_hidden_voice）<a href="#a隠しend声の行方scene_hidden_voice" class="hash-link" aria-label="A隠しEND「声の行方」（scene_hidden_voice） への直接リンク" title="A隠しEND「声の行方」（scene_hidden_voice） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="条件">条件<a href="#条件" class="hash-link" aria-label="条件 への直接リンク" title="条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>affinity_saya &gt;= 9</code></li>
+<li class=""><code>trust_saya_step1 = true</code></li>
+<li class=""><code>saw_core_a = true</code></li>
+<li class=""><code>saya_phrase_remembered = true</code>（第1章の新規選択で咲夜のフレーズを覚えていた場合にセット）</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="内容">内容<a href="#内容" class="hash-link" aria-label="内容 への直接リンク" title="内容 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">文化祭から二週間後。咲夜が校内の中庭で初めて人前で歌う</li>
+<li class="">朔の名前を呼ぶ時の声が変わっている――ためらいが消え、自分の声として呼んでいる</li>
+<li class="">新しい歌は凪の言葉の書き直しではなく、咲夜自身の言葉で書かれたもの</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="シーンファイル-3">シーンファイル<a href="#シーンファイル-3" class="hash-link" aria-label="シーンファイル への直接リンク" title="シーンファイル への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scenarios/chapter_11_saya_route/scene_hidden_voice.md</code></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="咲夜ルート派生-隠しいろはend夜に残った声scene_hidden_iroha_after">咲夜ルート派生 隠しいろはEND「夜に残った声」（scene_hidden_iroha_after）<a href="#咲夜ルート派生-隠しいろはend夜に残った声scene_hidden_iroha_after" class="hash-link" aria-label="咲夜ルート派生 隠しいろはEND「夜に残った声」（scene_hidden_iroha_after） への直接リンク" title="咲夜ルート派生 隠しいろはEND「夜に残った声」（scene_hidden_iroha_after） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="条件-1">条件<a href="#条件-1" class="hash-link" aria-label="条件 への直接リンク" title="条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>ending_saya_hidden = true</code> 相当</li>
+<li class=""><code>affinity_iroha &gt;= 2</code></li>
+<li class=""><code>iroha_past_known = true</code></li>
+<li class=""><code>iroha_light_voice = true</code></li>
+<li class=""><code>iroha_self_aware = true</code></li>
+<li class=""><code>saya_anonymous_known = true</code></li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="内容-1">内容<a href="#内容-1" class="hash-link" aria-label="内容 への直接リンク" title="内容 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">中庭で咲夜が歌い直した数日後、いろはは中学時代に学校で聞いた歌と、夜に聞いていた <code>SakuYa</code> 名義の匿名音源が同じ声だったと打ち明ける</li>
+<li class=""><code>SakuYa</code> は <code>S</code> と <code>Y</code> だけを立てた中学生っぽい綴りで、本人の半端な隠し方として処理する</li>
+<li class="">自分の声を嫌いになった夜にその音源に助けられていたことを初めて認める</li>
+<li class="">咲夜が前に出られた嬉しさと、自分はまだ照明の後ろに隠れている痛みが同時に返ってくる</li>
+<li class="">朔は <code>光もまた御子柴の声だった</code> と返し、いろはは歌ではなく <code>自分の声を出す練習</code> を始める約束をする</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="置き方">置き方<a href="#置き方" class="hash-link" aria-label="置き方 への直接リンク" title="置き方 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>chapter_11</code> hidden のさらに先に開く「後段 hidden epilogue」</li>
+<li class="">咲夜ルート本体の感動を奪わず、<code>知らないところで残っていた受け手</code> の側を返す</li>
+<li class="">いろはを咲夜の代替恋愛相手にはせず、支える側が自分の声を持ち直す話として置く</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="シーンファイル-4">シーンファイル<a href="#シーンファイル-4" class="hash-link" aria-label="シーンファイル への直接リンク" title="シーンファイル への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scenarios/chapter_11_saya_route/scene_hidden_iroha_after.md</code></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="b隠しend精算の翌日scene_hidden_settlement">B隠しEND「精算の翌日」（scene_hidden_settlement）<a href="#b隠しend精算の翌日scene_hidden_settlement" class="hash-link" aria-label="B隠しEND「精算の翌日」（scene_hidden_settlement） への直接リンク" title="B隠しEND「精算の翌日」（scene_hidden_settlement） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="条件-2">条件<a href="#条件-2" class="hash-link" aria-label="条件 への直接リンク" title="条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>affinity_chihiro &gt;= 7</code></li>
+<li class=""><code>trust_chihiro_step1 = true</code></li>
+<li class=""><code>saw_core_b = true</code></li>
+<li class=""><code>chihiro_route_kindness_trap = false</code>（scene_04で「善意トラップ」選択肢を選んで<strong>いない</strong>こと）</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="内容-2">内容<a href="#内容-2" class="hash-link" aria-label="内容 への直接リンク" title="内容 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">卒業式の日。千紘が小講堂の裏に朔を呼び出す</li>
+<li class="">初めて「助けて」と言う。紙コップを二つ持ってくる</li>
+<li class="">三円の精算を口実に、「一人で持ち続けるのは無理だ」と認める</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="シーンファイル-5">シーンファイル<a href="#シーンファイル-5" class="hash-link" aria-label="シーンファイル への直接リンク" title="シーンファイル への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scenarios/chapter_12_chihiro_route/scene_hidden_settlement.md</code></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="c隠しend四行目のあとscene_hidden_fourth_line">C隠しEND「四行目のあと」（scene_hidden_fourth_line）<a href="#c隠しend四行目のあとscene_hidden_fourth_line" class="hash-link" aria-label="C隠しEND「四行目のあと」（scene_hidden_fourth_line） への直接リンク" title="C隠しEND「四行目のあと」（scene_hidden_fourth_line） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="条件-3">条件<a href="#条件-3" class="hash-link" aria-label="条件 への直接リンク" title="条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>affinity_yuzuki &gt;= 7</code></li>
+<li class=""><code>trust_yuzuki_step1 = true</code></li>
+<li class=""><code>saw_core_c = true</code></li>
+<li class=""><code>preparation_invested = true</code>（第2章の新規選択で企画準備に投資していた場合にセット）</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="内容-3">内容<a href="#内容-3" class="hash-link" aria-label="内容 への直接リンク" title="内容 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">十二月。結月が奨学金の書類を自分一人で出しに行く</li>
+<li class="">朔には事後報告のメッセージだけが届く。「出してきた」の五文字</li>
+<li class="">結月は朔の隣ではなく、一人で四行目の先へ歩いた</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="シーンファイル-6">シーンファイル<a href="#シーンファイル-6" class="hash-link" aria-label="シーンファイル への直接リンク" title="シーンファイル への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scenarios/chapter_13_yuzuki_route/scene_hidden_fourth_line.md</code></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="結月ルート派生-隠しあかりend支える側の余白scene_hidden_akari_after">結月ルート派生 隠しあかりEND「支える側の余白」（scene_hidden_akari_after）<a href="#結月ルート派生-隠しあかりend支える側の余白scene_hidden_akari_after" class="hash-link" aria-label="結月ルート派生 隠しあかりEND「支える側の余白」（scene_hidden_akari_after） への直接リンク" title="結月ルート派生 隠しあかりEND「支える側の余白」（scene_hidden_akari_after） への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="条件-4">条件<a href="#条件-4" class="hash-link" aria-label="条件 への直接リンク" title="条件 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>ending_yuzuki_hidden = true</code> 相当</li>
+<li class=""><code>trust_akari_step1 = true</code></li>
+<li class=""><code>saw_core_akari = true</code></li>
+<li class=""><code>affinity_akari &gt;= 2</code></li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="内容-4">内容<a href="#内容-4" class="hash-link" aria-label="内容 への直接リンク" title="内容 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">結月が少しずつ自分で歩き始めたあと、あかりは「支える側」の役目が空いたことに気づく</li>
+<li class="">嬉しさと喪失が同時に来て、自分でも整理できず泣いた夜を経由して、あかりは初めて自分の空白を言葉にする</li>
+<li class="">朔はそこで初めて、結月の友達としてではないあかり本人の余白を見る</li>
+<li class="">恋愛逆転ではなく、「今のあかりを見ていく」という視線の発生を描く</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="置き方-1">置き方<a href="#置き方-1" class="hash-link" aria-label="置き方 への直接リンク" title="置き方 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>chapter_13</code> の通常GOOD / hidden のあとに開く「後段 hidden epilogue」</li>
+<li class="">結月ENDそのものを分岐上書きする構造にはしない</li>
+<li class="">結月との関係が動いたあと、役目を終えかけたあかり自身の空白を見る</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="シーンファイル-7">シーンファイル<a href="#シーンファイル-7" class="hash-link" aria-label="シーンファイル への直接リンク" title="シーンファイル への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>scenarios/chapter_13_yuzuki_route/scene_hidden_akari_after.md</code></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="将来追加候補-咲夜将来end">将来追加候補: 咲夜将来END<a href="#将来追加候補-咲夜将来end" class="hash-link" aria-label="将来追加候補: 咲夜将来END への直接リンク" title="将来追加候補: 咲夜将来END への直接リンク" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="設計意図">設計意図<a href="#設計意図" class="hash-link" aria-label="設計意図 への直接リンク" title="設計意図 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class="">咲夜の匿名歌い手設定を、学内ドラマの延長ではなく <code>卒業後に再び外へ声を渡す</code> 方向へ伸ばす</li>
+<li class=""><code>SakuYa</code> 名義を、止まった匿名アカウントから将来の活動名へ育てられるようにしておく</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="方針">方針<a href="#方針" class="hash-link" aria-label="方針 への直接リンク" title="方針 への直接リンク" translate="no">​</a></h4>
+<ul>
+<li class=""><code>有名人になった</code> そのものより、<code>自分の責任でまた声を外へ出せるようになった</code> ことを頂点に置く</li>
+<li class="">旧音楽室の未投稿音源や止まった <code>SakuYa</code> アカウントを、再始動のフックとして使えるようにする</li>
+<li class="">本編では静かに留め、将来END側で少し時間を飛ばして回収する</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="true-route">True Route<a href="#true-route" class="hash-link" aria-label="True Route への直接リンク" title="True Route への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="解放条件">解放条件<a href="#解放条件" class="hash-link" aria-label="解放条件 への直接リンク" title="解放条件 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><code>true_route_flag = true</code>（A/B/Cの3ルートを全てクリア済み）</li>
+<li class="">初回プレイでは到達不可</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="追加フラグ">追加フラグ<a href="#追加フラグ" class="hash-link" aria-label="追加フラグ への直接リンク" title="追加フラグ への直接リンク" translate="no">​</a></h3>
+<table><thead><tr><th>フラグ</th><th>用途</th></tr></thead><tbody><tr><td><code>true_route_flag</code></td><td>3ルートクリアで自動セット。True Route解放の前提条件</td></tr><tr><td><code>saku_night_exposed</code></td><td>朔の「夜」が表に出たことを記録</td></tr><tr><td><code>saku_night_resolved</code></td><td>朔が「聞く側」を選び直したことを記録</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="物語構造-逆転構造">物語構造: 逆転構造<a href="#物語構造-逆転構造" class="hash-link" aria-label="物語構造: 逆転構造 への直接リンク" title="物語構造: 逆転構造 への直接リンク" translate="no">​</a></h3>
+<p>個別ルートでは常に「聞く側」だった朔が、True Routeで初めて「自分の夜を聞かれる側」に回る。</p>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="前提-朔が各ルートで学ぶもの">前提: 朔が各ルートで学ぶもの<a href="#前提-朔が各ルートで学ぶもの" class="hash-link" aria-label="前提: 朔が各ルートで学ぶもの への直接リンク" title="前提: 朔が各ルートで学ぶもの への直接リンク" translate="no">​</a></h4>
+<table><thead><tr><th>ルート</th><th>学び</th><th>態度</th></tr></thead><tbody><tr><td>A（咲夜）</td><td>背中を押さない。選ばせる</td><td>引き受ける覚悟を待つ</td></tr><tr><td>B（千紘）</td><td>全部を背負わない。対等に任せる</td><td>自分の範囲を明言する</td></tr><tr><td>C（結月）</td><td>何も決めさせず隣にいる</td><td>沈黙に耐える</td></tr></tbody></table>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="シーン構成">シーン構成<a href="#シーン構成" class="hash-link" aria-label="シーン構成 への直接リンク" title="シーン構成 への直接リンク" translate="no">​</a></h4>
+<ol>
+<li class=""><strong>起点（第4章分岐）</strong>: 三人のうち誰か一人を追おうとするが、三人が先に動いている。咲夜は自分で旧音楽室に戻り、千紘は企画の立て直しを始め、結月は静かに残る。朔は「追う相手がいない」状態に置かれる</li>
+<li class=""><strong>朔の露出</strong>: 湊が「お前、結局自分のことは何も言わないよな」と核心を突く。朔の「夜」―― 聞くことに逃げていたこと、自分には声にする何かがないと感じていること ―― が初めて表に出る → <code>saku_night_exposed = true</code></li>
+<li class=""><strong>逆転</strong>: 三人が、個別ルートで朔から受け取ったものを朔に返す。咲夜は朔の沈黙を待ち、千紘は朔の範囲を問い、結月は黙って隣にいる</li>
+<li class=""><strong>着地</strong>: 文化祭の本番で三人がそれぞれの形で声を出す。朔は舞台に立たないが、自分が声にすべきものがあったと知った上で聞く側に立つ → <code>saku_night_resolved = true</code></li>
+</ol>
+<h4 class="anchor anchorTargetStickyNavbar_l0zU" id="個別ルートとの差異">個別ルートとの差異<a href="#個別ルートとの差異" class="hash-link" aria-label="個別ルートとの差異 への直接リンク" title="個別ルートとの差異 への直接リンク" translate="no">​</a></h4>
+<table><thead><tr><th>項目</th><th>個別ルート</th><th>True Route</th></tr></thead><tbody><tr><td>朔の立場</td><td>一人に深く踏み込む</td><td>自分の夜を聞かれる側に回る</td></tr><tr><td>クライマックス</td><td>ヒロインが自分で選ぶ</td><td>朔自身が「聞く側」を選び直す</td></tr><tr><td>着地の感情</td><td>二人の関係の変化</td><td>朔が自分の空虚と向き合った上で、聞くことを引き受ける</td></tr><tr><td>三人の立場</td><td>朔に支えられる</td><td>朔を支える側に回る（逆転）</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="全ルートクリアの必然性">全ルートクリアの必然性<a href="#全ルートクリアの必然性" class="hash-link" aria-label="全ルートクリアの必然性 への直接リンク" title="全ルートクリアの必然性 への直接リンク" translate="no">​</a></h3>
+<p>CLANNADは「善意の蓄積が奇跡を生む」、リトバスは「繰り返しプレイが虚構世界のループだった」。
+本作では**「プレイヤーが各ルートで選んだ態度が、朔に返ってくる」**構造にすることで、プレイヤーの行為そのものに意味を与える。</p>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="シーンファイル-8">シーンファイル<a href="#シーンファイル-8" class="hash-link" aria-label="シーンファイル への直接リンク" title="シーンファイル への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><code>scenarios/chapter_true/</code> 以下に配置（詳細ファイル構成は別途設計）</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="演出上の注意">演出上の注意<a href="#演出上の注意" class="hash-link" aria-label="演出上の注意 への直接リンク" title="演出上の注意 への直接リンク" translate="no">​</a></h2>
+<ul>
+<li class="">BAD END でも大事件にしない</li>
+<li class="">関係が壊れた結果として静かに終わる方が、本作には合う</li>
+<li class="">どの失敗も、主人公が善意だけでは足りないと知る形にする</li>
+<li class=""><strong>ルート確定の瞬間をプレイヤーが意識しないこと</strong>: 「誰のルートに入ったか」ではなく「気がついたらこの人のそばにいた」という感覚を優先する</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="実装メモ">実装メモ<a href="#実装メモ" class="hash-link" aria-label="実装メモ への直接リンク" title="実装メモ への直接リンク" translate="no">​</a></h2>
+<ul>
+<li class="">好感度は長期蓄積、<code>trust_*_step1</code> は章固有の関わり方判定として分ける</li>
+<li class="">分岐前の選択肢は、恋愛色を濃くしすぎない</li>
+<li class=""><strong>ルート確定は第4章終盤の自動判定で行う</strong>（プレイヤーの明示的な人物選択を挟まない）</li>
+<li class=""><code>@if</code> チェーンによるラベル分岐で、資格判定 → 好感度比較 → タイブレークを段階的に処理する</li>
+<li class="">ルート内では、さらに正規エンドと BAD END を分ける選択肢を置く</li>
+<li class="">サブストーリーの好感度効果は <code>@affinity</code> コマンドで処理する</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="関連資料">関連資料<a href="#関連資料" class="hash-link" aria-label="関連資料 への直接リンク" title="関連資料 への直接リンク" translate="no">​</a></h2>
+<ul>
+<li class=""><a class="" href="/yoruuta/docs/docs/story/story-design">ストーリー設計書</a></li>
+<li class=""><a class="" href="/yoruuta/docs/docs/story/chapter-outline">章イベント詳細</a></li>
+<li class=""><a class="" href="/yoruuta/docs/docs/characters/_overview">キャラクター設計 概要</a></li>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="ドキュメントページ"><a class="pagination-nav__link pagination-nav__link--prev" href="/yoruuta/docs/docs/story/emotional-depth-design"><div class="pagination-nav__sublabel">前へ</div><div class="pagination-nav__label">感情深度の改善設計</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/yoruuta/docs/docs/story/route-synopses"><div class="pagination-nav__sublabel">次へ</div><div class="pagination-nav__label">ルート概要</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_TCPb thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#目的" class="table-of-contents__link toc-highlight">目的</a></li><li><a href="#設計方針" class="table-of-contents__link toc-highlight">設計方針</a><ul><li><a href="#基本原則-蓄積型ルート決定" class="table-of-contents__link toc-highlight">基本原則: 蓄積型ルート決定</a></li><li><a href="#第4章の選択-態度の選択であり人の選択ではない" class="table-of-contents__link toc-highlight">第4章の選択: 態度の選択であり、人の選択ではない</a></li></ul></li><li><a href="#管理する主要値" class="table-of-contents__link toc-highlight">管理する主要値</a><ul><li><a href="#共通値" class="table-of-contents__link toc-highlight">共通値</a></li><li><a href="#分岐用の意味" class="table-of-contents__link toc-highlight">分岐用の意味</a></li></ul></li><li><a href="#数値設計" class="table-of-contents__link toc-highlight">数値設計</a><ul><li><a href="#共通ルートの最大値" class="table-of-contents__link toc-highlight">共通ルートの最大値</a></li><li><a href="#サブストーリーによる好感度効果" class="table-of-contents__link toc-highlight">サブストーリーによる好感度効果</a></li><li><a href="#分岐に使う閾値二段階判定" class="table-of-contents__link toc-highlight">分岐に使う閾値（二段階判定）</a></li></ul></li><li><a href="#ルート決定アルゴリズム" class="table-of-contents__link toc-highlight">ルート決定アルゴリズム</a><ul><li><a href="#概要" class="table-of-contents__link toc-highlight">概要</a></li><li><a href="#判定フロー" class="table-of-contents__link toc-highlight">判定フロー</a></li><li><a href="#実装上の注意" class="table-of-contents__link toc-highlight">実装上の注意</a></li></ul></li><li><a href="#共通ルートの主要選択" class="table-of-contents__link toc-highlight">共通ルートの主要選択</a><ul><li><a href="#第0章" class="table-of-contents__link toc-highlight">第0章</a></li><li><a href="#第1章" class="table-of-contents__link toc-highlight">第1章</a></li><li><a href="#第2章" class="table-of-contents__link toc-highlight">第2章</a></li><li><a href="#第3章" class="table-of-contents__link toc-highlight">第3章</a></li><li><a href="#第4章態度の選択" class="table-of-contents__link toc-highlight">第4章（態度の選択）</a></li></ul></li><li><a href="#ルート分岐条件" class="table-of-contents__link toc-highlight">ルート分岐条件</a><ul><li><a href="#aルート咲夜" class="table-of-contents__link toc-highlight">Aルート（咲夜）</a></li><li><a href="#bルート千紘" class="table-of-contents__link toc-highlight">Bルート（千紘）</a></li><li><a href="#cルート結月" class="table-of-contents__link toc-highlight">Cルート（結月）</a></li><li><a href="#あかりend" class="table-of-contents__link toc-highlight">あかりEND</a></li><li><a href="#友情end" class="table-of-contents__link toc-highlight">友情END</a></li></ul></li><li><a href="#ルート不成立条件" class="table-of-contents__link toc-highlight">ルート不成立条件</a></li><li><a href="#bad-end-設計" class="table-of-contents__link toc-highlight">BAD END 設計</a><ul><li><a href="#a系-bad" class="table-of-contents__link toc-highlight">A系 BAD</a></li><li><a href="#b系-bad" class="table-of-contents__link toc-highlight">B系 BAD</a></li><li><a href="#c系-bad" class="table-of-contents__link toc-highlight">C系 BAD</a></li><li><a href="#共通bad" class="table-of-contents__link toc-highlight">共通BAD</a></li></ul></li><li><a href="#ルート内-bad-end-トリガー条件" class="table-of-contents__link toc-highlight">ルート内 BAD END トリガー条件</a><ul><li><a href="#a系-badscene_bad_silence" class="table-of-contents__link toc-highlight">A系 BAD（scene_bad_silence）</a></li><li><a href="#b系-badscene_bad_severed" class="table-of-contents__link toc-highlight">B系 BAD（scene_bad_severed）</a></li><li><a href="#c系-badscene_bad_vanish" class="table-of-contents__link toc-highlight">C系 BAD（scene_bad_vanish）</a></li></ul></li><li><a href="#隠しend-条件" class="table-of-contents__link toc-highlight">隠しEND 条件</a><ul><li><a href="#共通設計方針" class="table-of-contents__link toc-highlight">共通設計方針</a></li><li><a href="#a隠しend声の行方scene_hidden_voice" class="table-of-contents__link toc-highlight">A隠しEND「声の行方」（scene_hidden_voice）</a></li><li><a href="#咲夜ルート派生-隠しいろはend夜に残った声scene_hidden_iroha_after" class="table-of-contents__link toc-highlight">咲夜ルート派生 隠しいろはEND「夜に残った声」（scene_hidden_iroha_after）</a></li><li><a href="#b隠しend精算の翌日scene_hidden_settlement" class="table-of-contents__link toc-highlight">B隠しEND「精算の翌日」（scene_hidden_settlement）</a></li><li><a href="#c隠しend四行目のあとscene_hidden_fourth_line" class="table-of-contents__link toc-highlight">C隠しEND「四行目のあと」（scene_hidden_fourth_line）</a></li><li><a href="#結月ルート派生-隠しあかりend支える側の余白scene_hidden_akari_after" class="table-of-contents__link toc-highlight">結月ルート派生 隠しあかりEND「支える側の余白」（scene_hidden_akari_after）</a></li><li><a href="#将来追加候補-咲夜将来end" class="table-of-contents__link toc-highlight">将来追加候補: 咲夜将来END</a></li></ul></li><li><a href="#true-route" class="table-of-contents__link toc-highlight">True Route</a><ul><li><a href="#解放条件" class="table-of-contents__link toc-highlight">解放条件</a></li><li><a href="#追加フラグ" class="table-of-contents__link toc-highlight">追加フラグ</a></li><li><a href="#物語構造-逆転構造" class="table-of-contents__link toc-highlight">物語構造: 逆転構造</a></li><li><a href="#全ルートクリアの必然性" class="table-of-contents__link toc-highlight">全ルートクリアの必然性</a></li><li><a href="#シーンファイル-8" class="table-of-contents__link toc-highlight">シーンファイル</a></li></ul></li><li><a href="#演出上の注意" class="table-of-contents__link toc-highlight">演出上の注意</a></li><li><a href="#実装メモ" class="table-of-contents__link toc-highlight">実装メモ</a></li><li><a href="#関連資料" class="table-of-contents__link toc-highlight">関連資料</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 よるのうたかた. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

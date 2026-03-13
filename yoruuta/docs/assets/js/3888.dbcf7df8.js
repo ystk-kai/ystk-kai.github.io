@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunk_yoruuta_docs=globalThis.webpackChunk_yoruuta_docs||[]).push([[3888],{3888(a,c,e){e.d(c,{createPacketServices:()=>s.$});var s=e(40145);e(17899)}}]);

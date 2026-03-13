@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ja" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-story/minigame-collection-design" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">ミニゲーム収集設計 | よるのうたかた</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ystk-kai.github.io/yoruuta/docs/docs/story/minigame-collection-design"><meta data-rh="true" property="og:locale" content="ja"><meta data-rh="true" name="docusaurus_locale" content="ja"><meta data-rh="true" name="docsearch:language" content="ja"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="ミニゲーム収集設計 | よるのうたかた"><meta data-rh="true" name="description" content="目的"><meta data-rh="true" property="og:description" content="目的"><link data-rh="true" rel="icon" href="/yoruuta/docs/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ystk-kai.github.io/yoruuta/docs/docs/story/minigame-collection-design"><link data-rh="true" rel="alternate" href="https://ystk-kai.github.io/yoruuta/docs/docs/story/minigame-collection-design" hreflang="ja"><link data-rh="true" rel="alternate" href="https://ystk-kai.github.io/yoruuta/docs/docs/story/minigame-collection-design" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ストーリー","item":"https://ystk-kai.github.io/yoruuta/docs/docs/category/ストーリー"},{"@type":"ListItem","position":2,"name":"ミニゲーム収集設計","item":"https://ystk-kai.github.io/yoruuta/docs/docs/story/minigame-collection-design"}]}</script><link rel="stylesheet" href="/yoruuta/docs/assets/css/styles.c6c79f8e.css">
+<script src="/yoruuta/docs/assets/js/runtime~main.4851a888.js" defer="defer"></script>
+<script src="/yoruuta/docs/assets/js/main.8af98efe.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"dark"),document.documentElement.setAttribute("data-theme-choice",t||"dark")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="メインコンテンツまでスキップ"><a class="skipToContent_stpX" href="#__docusaurus_skipToContent_fallback">メインコンテンツまでスキップ</a></div><nav aria-label="ナビゲーション" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="ナビゲーションバーを開く" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/yoruuta/docs/"><b class="navbar__title text--truncate">よるのうたかた</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/yoruuta/docs/docs/project/project-brief">ドキュメント</a><a class="navbar__item navbar__link" href="/yoruuta/docs/docs/story/scenario-flow">分岐マップ</a><a class="navbar__item navbar__link" href="/yoruuta/docs/docs/characters/character-map">人物相関図</a><a class="navbar__item navbar__link" href="/yoruuta/docs/docs/story/story-timeline">時系列マップ</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_Oedk colorModeToggle_G6dS"><button class="clean-btn toggleButton_dvFr toggleButtonDisabled_PpM1" type="button" disabled="" title="システムモード" aria-label="ダークモードを切り替える(現在はシステムモード)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_oK4m lightToggleIcon_muva"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_oK4m darkToggleIcon_hqQz"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_oK4m systemToggleIcon_tn1U"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_M982"><div class="navbar__search searchBarContainer_AhBB" dir="ltr"><input placeholder="検索" aria-label="Search" class="navbar__search-input searchInput_u6pA" value=""><div class="loadingRing_mMBz searchBarLoadingRing_zGVg"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_bwxn"><div class="docsWrapper_yA0O"><button aria-label="先頭へ戻る" class="clean-btn theme-back-to-top-button backToTopButton_Xwik" type="button"></button><div class="docRoot_oh8m"><aside class="theme-doc-sidebar-container docSidebarContainer_GwVL"><div class="sidebarViewport_pOc7"><div class="sidebar_ArGQ"><nav aria-label="ドキュメントのサイドバー" class="menu thin-scrollbar menu__n3M"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/yoruuta/docs/docs/project/project-brief"><span title="企画概要" class="categoryLinkLabel_NLFE">企画概要</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/project/project-brief"><span title="企画書" class="linkLabel_WhwO">企画書</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/project/personas"><span title="検証ペルソナ定義" class="linkLabel_WhwO">検証ペルソナ定義</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--active" href="/yoruuta/docs/docs/category/ストーリー"><span title="ストーリー" class="categoryLinkLabel_NLFE">ストーリー</span></a><button aria-label="&#x27;ストーリー&#x27;の目次を隠す" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/story-design"><span title="全体設計" class="categoryLinkLabel_NLFE">全体設計</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/story-design"><span title="ストーリー設計書" class="linkLabel_WhwO">ストーリー設計書</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/story-treatment"><span title="ストーリートリートメント" class="linkLabel_WhwO">ストーリートリートメント</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/prologue-design"><span title="プロローグ設計" class="linkLabel_WhwO">プロローグ設計</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/emotional-depth-design"><span title="感情深度の改善設計" class="linkLabel_WhwO">感情深度の改善設計</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/branching-design"><span title="分岐・ルート" class="categoryLinkLabel_NLFE">分岐・ルート</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/branching-design"><span title="分岐設計書" class="linkLabel_WhwO">分岐設計書</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/route-synopses"><span title="ルート概要" class="linkLabel_WhwO">ルート概要</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/chapter-outline"><span title="シーン構成" class="categoryLinkLabel_NLFE">シーン構成</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/chapter-outline"><span title="章イベント詳細" class="linkLabel_WhwO">章イベント詳細</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/scene-breakdown"><span title="シーン分解表" class="linkLabel_WhwO">シーン分解表</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/scenario-balance"><span title="シナリオバランス設計" class="linkLabel_WhwO">シナリオバランス設計</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/foreshadow-payoff-map"><span title="対応表" class="categoryLinkLabel_NLFE">対応表</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/foreshadow-payoff-map"><span title="伏線・回収対応表" class="linkLabel_WhwO">伏線・回収対応表</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/scene-direction-map"><span title="演出対応表" class="linkLabel_WhwO">演出対応表</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/story/scenario-style-guide"><span title="制作ガイド" class="categoryLinkLabel_NLFE">制作ガイド</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/scenario-style-guide"><span title="シナリオ表記ガイド" class="linkLabel_WhwO">シナリオ表記ガイド</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/story/festival-performance-design"><span title="文化祭上演企画設計" class="linkLabel_WhwO">文化祭上演企画設計</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/yoruuta/docs/docs/story/minigame-collection-design"><span title="ミニゲーム収集設計" class="linkLabel_WhwO">ミニゲーム収集設計</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist" href="/yoruuta/docs/docs/characters/"><span title="キャラクター" class="categoryLinkLabel_NLFE">キャラクター</span></a><button aria-label="&#x27;キャラクター&#x27;の目次を隠す" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/_overview"><span title="キャラクター設計 概要" class="linkLabel_WhwO">キャラクター設計 概要</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/characters/saku"><span title="メインキャラクター" class="categoryLinkLabel_NLFE">メインキャラクター</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/saku"><span title="久瀬 朔（くぜ さく）" class="linkLabel_WhwO">久瀬 朔（くぜ さく）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/saya"><span title="綾瀬川 咲夜（あやせがわ さや）" class="linkLabel_WhwO">綾瀬川 咲夜（あやせがわ さや）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/chihiro"><span title="四辻 千紘（よつつじ ちひろ）" class="linkLabel_WhwO">四辻 千紘（よつつじ ちひろ）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/yuzuki"><span title="穂坂 結月（ほさか ゆづき）" class="linkLabel_WhwO">穂坂 結月（ほさか ゆづき）</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/characters/minato"><span title="サブキャラクター" class="categoryLinkLabel_NLFE">サブキャラクター</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/minato"><span title="七瀬 湊（ななせ みなと）" class="linkLabel_WhwO">七瀬 湊（ななせ みなと）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/iroha"><span title="御子柴 いろは（みこしば いろは）" class="linkLabel_WhwO">御子柴 いろは（みこしば いろは）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/akari"><span title="柊 あかり（ひいらぎ あかり）" class="linkLabel_WhwO">柊 あかり（ひいらぎ あかり）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/mizuki"><span title="水城 真琴（みずき まこと）" class="linkLabel_WhwO">水城 真琴（みずき まこと）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/maho"><span title="久瀬 真帆（くぜ まほ）" class="linkLabel_WhwO">久瀬 真帆（くぜ まほ）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/nagi"><span title="白瀬 凪（しらせ なぎ）" class="linkLabel_WhwO">白瀬 凪（しらせ なぎ）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/koichi"><span title="四辻 恒一（よつつじ こういち）" class="linkLabel_WhwO">四辻 恒一（よつつじ こういち）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/miyako"><span title="穂坂 美弥子（ほさか みやこ）" class="linkLabel_WhwO">穂坂 美弥子（ほさか みやこ）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/kotoha"><span title="椎葉 殊羽（しいば ことは）" class="linkLabel_WhwO">椎葉 殊羽（しいば ことは）</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/characters/visual-design-spec"><span title="ビジュアル仕様書" class="linkLabel_WhwO">ビジュアル仕様書</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/yoruuta/docs/docs/architecture/docs-architecture"><span title="アーキテクチャ" class="categoryLinkLabel_NLFE">アーキテクチャ</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/architecture/docs-architecture"><span title="運用方針" class="categoryLinkLabel_NLFE">運用方針</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/docs-architecture"><span title="ドキュメント運用方針" class="linkLabel_WhwO">ドキュメント運用方針</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/scenario-directory-architecture"><span title="シナリオディレクトリ設計" class="linkLabel_WhwO">シナリオディレクトリ設計</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" tabindex="0" href="/yoruuta/docs/docs/architecture/asset-id-list"><span title="技術仕様" class="categoryLinkLabel_NLFE">技術仕様</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/asset-id-list"><span title="アセットID一覧" class="linkLabel_WhwO">アセットID一覧</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/effects-and-transitions"><span title="エフェクト・トランジション定義" class="linkLabel_WhwO">エフェクト・トランジション定義</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/yoruuta/docs/docs/architecture/minigame-system-architecture"><span title="ミニゲーム実装設計" class="linkLabel_WhwO">ミニゲーム実装設計</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_te1L menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/yoruuta/docs/docs/reviews/review-round-01"><span title="アーカイブ" class="categoryLinkLabel_NLFE">アーカイブ</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_H2W_"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_owJg"><div class="docItemContainer_FjmL"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_kmwc" aria-label="パンくずリストのナビゲーション"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="ホームページ" class="breadcrumbs__link" href="/yoruuta/docs/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_motE"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/yoruuta/docs/docs/category/ストーリー"><span>ストーリー</span></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">制作ガイド</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">ミニゲーム収集設計</span></li></ul></nav><div class="tocCollapsible_zDGt theme-doc-toc-mobile tocMobile_DSEa"><button type="button" class="clean-btn tocCollapsibleButton_ngcJ">このページの見出し</button></div><div class="theme-doc-markdown markdown"><header><h1>ミニゲーム収集設計</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="目的">目的<a href="#目的" class="hash-link" aria-label="目的 への直接リンク" title="目的 への直接リンク" translate="no">​</a></h2>
+<p>本資料は、物語中に点在するミニゲームを <code>収集対象</code> として扱い、
+タイトル画面から再挑戦できる恒久コンテンツへ落とし込むための設計書である。</p>
+<p>狙いは次の三つにある。</p>
+<ul>
+<li class="">ストーリー分岐を <code>探す楽しさ</code> に変換する</li>
+<li class="">補助キャラクターや場所に、会話以外の接点を持たせる</li>
+<li class="">本編を必須化せず、やり込み層として別の満足を作る</li>
+<li class="">本編に疲れたプレイヤーにも、作品へ戻る休憩所を作る</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="基本方針">基本方針<a href="#基本方針" class="hash-link" aria-label="基本方針 への直接リンク" title="基本方針 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="1-本編の主導権を奪わない">1. 本編の主導権を奪わない<a href="#1-本編の主導権を奪わない" class="hash-link" aria-label="1. 本編の主導権を奪わない への直接リンク" title="1. 本編の主導権を奪わない への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">ミニゲームはメインルート解放条件に使わない</li>
+<li class="">上手さで正規エンドの価値を上下させない</li>
+<li class="">本編で楽しめなかったプレイヤーにも、別軸の滞在理由を与える</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="2-発見そのものを報酬にする">2. 発見そのものを報酬にする<a href="#2-発見そのものを報酬にする" class="hash-link" aria-label="2. 発見そのものを報酬にする への直接リンク" title="2. 発見そのものを報酬にする への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">どこで遊べるかを明示しすぎない</li>
+<li class="">サブシーンや寄り道の中に <code>遊べる場所</code> を埋める</li>
+<li class="">一度見つけたミニゲームは、以後タイトルからいつでも選べる</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="3-物語文脈を持つゲームだけを採用する">3. 物語文脈を持つゲームだけを採用する<a href="#3-物語文脈を持つゲームだけを採用する" class="hash-link" aria-label="3. 物語文脈を持つゲームだけを採用する への直接リンク" title="3. 物語文脈を持つゲームだけを採用する への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">ただ遊べるだけのアーケード集にはしない</li>
+<li class="">その場所、その相手、その場面だから成立する遊びを選ぶ</li>
+<li class="">1プレイ 2〜4 分程度で終わる密度を基準にする</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="4-収集と滞在を分ける">4. 収集と滞在を分ける<a href="#4-収集と滞在を分ける" class="hash-link" aria-label="4. 収集と滞在を分ける への直接リンク" title="4. 収集と滞在を分ける への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><code>発見した</code> 時点でミニゲームは解放される</li>
+<li class=""><code>遊んだ</code> 時点で少しずつメダルが蓄積する</li>
+<li class="">上手いほど得をするが、下手でも前進感は残す</li>
+<li class="">収集だけでも楽しく、継続プレイにはメダルという別の動機を用意する</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="導入意図">導入意図<a href="#導入意図" class="hash-link" aria-label="導入意図 への直接リンク" title="導入意図 への直接リンク" translate="no">​</a></h2>
+<p>本作の本筋は、傷の扱い方と距離感の物語である。
+そのため、ミニゲームは主菜ではなく、日常の温度を補強する副菜として扱うべきである。</p>
+<p>一方で、現在の構造は <code>選択と会話</code> に重心が強く、探索的な遊びは薄い。
+そこで、物語の節目に小さなゲーム体験を点在させると、
+プレイヤーは <code>どの寄り道に何があるのか</code> を探し始める。</p>
+<p>この感覚は、単なる周回ではなく <code>宝探し</code> に近い。
+特に湊のような、日常と寄り道をつなぐ役には非常に相性が良い。</p>
+<p>同時に、この層には <code>本編の感情負荷から一度離れる場所</code> という役割も持たせる。
+重いシーンを読み進めるのがしんどい時でも、タイトルから短く遊べる場所が残っていれば、
+プレイヤーは作品そのものを閉じ切らずに済む。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="システムの骨子">システムの骨子<a href="#システムの骨子" class="hash-link" aria-label="システムの骨子 への直接リンク" title="システムの骨子 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="解放フロー">解放フロー<a href="#解放フロー" class="hash-link" aria-label="解放フロー への直接リンク" title="解放フロー への直接リンク" translate="no">​</a></h3>
+<ol>
+<li class="">ストーリー中の対象シーンに入る</li>
+<li class="">そのシーンでミニゲームの存在を発見する</li>
+<li class="">発見時点で、そのミニゲームがグローバルで解放される</li>
+<li class="">タイトル画面の <code>ミニゲーム</code> から再挑戦可能になる</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="メダルフロー">メダルフロー<a href="#メダルフロー" class="hash-link" aria-label="メダルフロー への直接リンク" title="メダルフロー への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">各ゲームで <code>メダル</code> を獲得できる</li>
+<li class=""><code>card_21</code> と <code>lucky_reels</code> は所持メダルを賭けてから遊ぶ</li>
+<li class="">賭け枚数を上げるほど、払い戻しも大きくなる</li>
+<li class="">負けると所持メダルは減るが、累計獲得メダルは減らない</li>
+<li class="">メダルは <code>現在所持</code> と <code>累計獲得</code> を分けて管理する</li>
+<li class="">隠しENDや追加報酬は <code>累計獲得メダル</code> を参照する</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="隠しendフロー">隠しENDフロー<a href="#隠しendフロー" class="hash-link" aria-label="隠しENDフロー への直接リンク" title="隠しENDフロー への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">全対象ミニゲームを解放済み</li>
+<li class="">累計獲得メダルが目標値に到達</li>
+</ul>
+<p>上記を満たした時だけ、<code>ミニゲーム一覧</code> の末尾に
+隠しEND用のストーリー項目を追加する。
+本編タイトル導線からは分離し、任意のやり込み報酬として扱う。</p>
+<ul>
+<li class="">再生時の見た目は通常ADVと完全に揃え、開始は <code>checker_out</code>、終了は <code>checker_in</code> を使う</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="メダル設計の原則">メダル設計の原則<a href="#メダル設計の原則" class="hash-link" aria-label="メダル設計の原則 への直接リンク" title="メダル設計の原則 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="1-入口は残し賭け台はちゃんと痛い">1. 入口は残し、賭け台はちゃんと痛い<a href="#1-入口は残し賭け台はちゃんと痛い" class="hash-link" aria-label="1. 入口は残し、賭け台はちゃんと痛い への直接リンク" title="1. 入口は残し、賭け台はちゃんと痛い への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><code>arcade_stack</code> は無料で遊べる主力台として残す</li>
+<li class=""><code>card_21</code> と <code>lucky_reels</code> は賭け台として、負ければ所持メダルが減る</li>
+<li class="">ただし賭け額は小刻みにし、初期の試行錯誤で詰みにくくする</li>
+<li class="">本編に疲れて逃げてきたプレイヤーを閉め出さないため、無料台を必ず一本残す</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="2-うまさの報酬も残す">2. うまさの報酬も残す<a href="#2-うまさの報酬も残す" class="hash-link" aria-label="2. うまさの報酬も残す への直接リンク" title="2. うまさの報酬も残す への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">高スコアや連勝は、より大きい賭けを安全に乗せられる形で返す</li>
+<li class="">ベストスコアは副次目標として残す</li>
+<li class="">ただし隠しEND条件はベスト値に直結させない</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="3-ゲームごとに欲求の種類を分ける">3. ゲームごとに欲求の種類を分ける<a href="#3-ゲームごとに欲求の種類を分ける" class="hash-link" aria-label="3. ゲームごとに欲求の種類を分ける への直接リンク" title="3. ゲームごとに欲求の種類を分ける への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">技術で伸びるゲーム</li>
+<li class="">判断で勝つゲーム</li>
+<li class="">変動報酬を気軽に回すゲーム</li>
+</ul>
+<p>この三つを揃えると、気分に応じて戻る理由が変わる。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="収録候補ミニゲーム">収録候補ミニゲーム<a href="#収録候補ミニゲーム" class="hash-link" aria-label="収録候補ミニゲーム への直接リンク" title="収録候補ミニゲーム への直接リンク" translate="no">​</a></h2>
+<table><thead><tr><th>ID</th><th>仮タイトル</th><th>初回発見導線</th><th>ジャンル</th><th>物語上の意味</th><th>1プレイ目安</th></tr></thead><tbody><tr><td><code>arcade_stack</code></td><td>放課後アーケード</td><td>湊との寄り道</td><td>落ち物パズル</td><td>技術で伸びる主力台。ゲーセンの入口になる</td><td>3分</td></tr><tr><td><code>card_21</code></td><td>放課後ブラックジャック</td><td>いろはとの軽い寄り道</td><td>カードゲーム</td><td>静かな判断で遊べる短期決着台</td><td>2分</td></tr><tr><td><code>lucky_reels</code></td><td>ネオンスロット</td><td>あかりの広報・寄り道導線</td><td>スロット</td><td>何も考えず回せる休憩用の変動報酬台</td><td>1分</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="初期3本の確定案">初期3本の確定案<a href="#初期3本の確定案" class="hash-link" aria-label="初期3本の確定案 への直接リンク" title="初期3本の確定案 への直接リンク" translate="no">​</a></h2>
+<p>最初に実装するのは、入力負荷が軽く、モバイルでも破綻しにくく、
+かつメインヒロインの感情線に直接触れすぎない次の3本とする。</p>
+<table><thead><tr><th>ID</th><th>採用名</th><th>入力</th><th>解放場所</th><th>分岐上の意味</th><th>目標スコア方針</th></tr></thead><tbody><tr><td><code>arcade_stack</code></td><td>放課後アーケード</td><td>左右スワイプ + 回転タップ</td><td><code>chapter_01 / scene_sub_minato_01</code></td><td>技術で伸びる主力台。休憩所の顔になる</td><td>プレイ結果に応じてメダル増減</td></tr><tr><td><code>card_21</code></td><td>放課後ブラックジャック</td><td><code>Hit / Stand</code> ボタン</td><td><code>chapter_02 / scene_02b_minato_iroha_banter</code></td><td>短時間の判断と運で遊べる台。静かな休憩に向く</td><td>勝敗と手札内容でメダル変動</td></tr><tr><td><code>lucky_reels</code></td><td>ネオンスロット</td><td>ワンタップ</td><td><code>chapter_02 / scene_05_preparation</code></td><td>ぼんやり回せる台。変動報酬で再訪理由を作る</td><td>絵柄でメダル変動</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="採用理由">採用理由<a href="#採用理由" class="hash-link" aria-label="採用理由 への直接リンク" title="採用理由 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p><code>arcade_stack</code></p>
+<ul>
+<li class="">湊の寄り道導線と相性が最も良い</li>
+<li class="">ゲームセンターという場所が <code>ミニゲーム群の入口</code> として機能する</li>
+<li class="">ちゃんとした落ち物パズルとして、長く遊べる軸にしやすい</li>
+</ul>
+</li>
+<li class="">
+<p><code>card_21</code></p>
+<ul>
+<li class="">1ラウンドが短く、休憩所に向く</li>
+<li class="">反射神経ではなく判断で勝てる</li>
+<li class="">いろはの静かな観察と相性が良い</li>
+</ul>
+</li>
+<li class="">
+<p><code>lucky_reels</code></p>
+<ul>
+<li class="">もっとも軽い操作で回せる</li>
+<li class="">変動報酬が強く、<code>もう一回</code> を作りやすい</li>
+<li class="">あかりの派手さやネオンとの相性が良い</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="配置詳細">配置詳細<a href="#配置詳細" class="hash-link" aria-label="配置詳細 への直接リンク" title="配置詳細 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="1-arcade_stack">1. <code>arcade_stack</code><a href="#1-arcade_stack" class="hash-link" aria-label="1-arcade_stack への直接リンク" title="1-arcade_stack への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">章: <code>chapter_01</code></li>
+<li class="">シーン: <a class="" href="/yoruuta/docs/home/ystk/projects/yoruuta/scenarios/chapter_01_day_and_night/scene_sub_minato_01.md">scene_sub_minato_01.md</a></li>
+<li class="">導線:<!-- -->
+<ul>
+<li class="">湊サブへ入る</li>
+<li class="">自販機前会話の後半で、湊が <code>まだ帰るには早い</code> と寄り道を提案</li>
+<li class="">ゲーセンの1プレイだけ付き合わされる</li>
+</ul>
+</li>
+<li class="">分岐位置:<!-- -->
+<ul>
+<li class="">chapter_01 のサブノードから枝分かれする任意導線</li>
+<li class="">本編には直接影響しないが、初回解放でタイトルのミニゲーム一覧が開き始める</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="2-card_21">2. <code>card_21</code><a href="#2-card_21" class="hash-link" aria-label="2-card_21 への直接リンク" title="2-card_21 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">章: <code>chapter_02</code></li>
+<li class="">シーン: <a class="" href="/yoruuta/docs/home/ystk/projects/yoruuta/scenarios/chapter_02_program_setup/scene_02b_minato_iroha_banter.md">scene_02b_minato_iroha_banter.md</a></li>
+<li class="">導線:<!-- -->
+<ul>
+<li class="">湊といろはの軽口シーンに入る</li>
+<li class="">帰り際、駅前のゲームコーナーにある静かなカード台の話題が出る</li>
+<li class="">いろはが <code>こういうのは確率を読めば少しだけ楽です</code> と言う</li>
+</ul>
+</li>
+<li class="">分岐位置:<!-- -->
+<ul>
+<li class="">chapter_02 のいろは側サブノードから枝分かれする任意導線</li>
+<li class="">うるさすぎない台として、タイトル休憩所の中間ポジションを担う</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="3-lucky_reels">3. <code>lucky_reels</code><a href="#3-lucky_reels" class="hash-link" aria-label="3-lucky_reels への直接リンク" title="3-lucky_reels への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">章: <code>chapter_02</code></li>
+<li class="">シーン: <a class="" href="/yoruuta/docs/home/ystk/projects/yoruuta/scenarios/chapter_02_program_setup/scene_05_preparation.md">scene_05_preparation.md</a></li>
+<li class="">導線:<!-- -->
+<ul>
+<li class="">あかりの掲示・導線づくりを見る</li>
+<li class="">派手さと視線誘導の話から、駅前のネオン台の話題に繋ぐ</li>
+<li class="">タイトルの休憩所では、もっとも気軽に回せる台として置く</li>
+</ul>
+</li>
+<li class="">分岐位置:<!-- -->
+<ul>
+<li class="">chapter_02 本編ノードから派生する軽い導線</li>
+<li class="">本編の感情線ではなく、<code>また戻りたくなる入口</code> として扱う</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="優先実装順">優先実装順<a href="#優先実装順" class="hash-link" aria-label="優先実装順 への直接リンク" title="優先実装順 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="phase-1">Phase 1<a href="#phase-1" class="hash-link" aria-label="Phase 1 への直接リンク" title="Phase 1 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><code>arcade_stack</code></li>
+<li class=""><code>card_21</code></li>
+<li class=""><code>lucky_reels</code></li>
+</ul>
+<p>理由:</p>
+<ul>
+<li class="">遊びの軸が分散している</li>
+<li class="">技術・判断・運の三軸が揃う</li>
+<li class="">本編に疲れた時の逃げ込み先として性格が分かれる</li>
+<li class="">UI と入力設計の共通部を作りやすい</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="phase-2">Phase 2<a href="#phase-2" class="hash-link" aria-label="Phase 2 への直接リンク" title="Phase 2 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class=""><code>broadcast_cue</code></li>
+<li class=""><code>phrase_trace</code></li>
+<li class=""><code>poster_route</code></li>
+</ul>
+<p>理由:</p>
+<ul>
+<li class="">物語文脈は強いが、演出依存がやや高い</li>
+<li class="">先に共通のミニゲーム基盤を固めた方が安全</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="湊ゲーセン案の位置づけ">湊ゲーセン案の位置づけ<a href="#湊ゲーセン案の位置づけ" class="hash-link" aria-label="湊ゲーセン案の位置づけ への直接リンク" title="湊ゲーセン案の位置づけ への直接リンク" translate="no">​</a></h2>
+<p><code>arcade_stack</code> は、単独のサブEND装置ではなく、
+ミニゲーム収集レイヤーの <code>入口</code> として置くのが最も強い。</p>
+<p>理由は以下の通り。</p>
+<ul>
+<li class="">湊は寄り道へ連れ出す役として自然</li>
+<li class="">ゲーセンは <code>遊びが置いてある場所</code> として説明不要</li>
+<li class="">タイトル画面のミニゲーム選択と、世界観上の接続が取りやすい</li>
+</ul>
+<p>この時、重要なのは <code>テトリスを実装したから面白い</code> ではなく、
+<code>湊と遊んだ記憶がコレクションの最初の一個になる</code> ことにある。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="タイトル画面との関係">タイトル画面との関係<a href="#タイトル画面との関係" class="hash-link" aria-label="タイトル画面との関係 への直接リンク" title="タイトル画面との関係 への直接リンク" translate="no">​</a></h2>
+<p>タイトル画面には、既存の <code>はじめる / つづきから / 設定</code> に加えて
+<code>ミニゲーム</code> を追加する。</p>
+<ul>
+<li class="">未解放時は非表示、または <code>???</code></li>
+<li class="">1本でも解放すると選択可能</li>
+<li class="">ミニゲーム一覧画面で、現在メダル・累計メダル・各台の記録を確認可能</li>
+</ul>
+<p>ここで大事なのは、タイトル側では <code>物語の途中の失敗</code> を引きずらないことだ。
+タイトルから遊ぶ時は、純粋な再挑戦として扱う。</p>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="シナリオ分岐マップ表示">シナリオ分岐マップ表示<a href="#シナリオ分岐マップ表示" class="hash-link" aria-label="シナリオ分岐マップ表示 への直接リンク" title="シナリオ分岐マップ表示 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">Docsaurus の <code>シナリオ分岐マップ</code> には、各章のミニゲーム解放ポイントを専用ノードで表示する</li>
+<li class=""><code>arcade_stack</code> は <code>chapter_01_sub_湊</code> から派生</li>
+<li class=""><code>card_21</code> は <code>chapter_02</code> のいろは側サブ導線から派生</li>
+<li class=""><code>lucky_reels</code> は <code>chapter_02</code> のあかり導線から派生</li>
+<li class="">マップ上では <code>任意 / 解放で一覧追加</code> と分かるラベルにする</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="隠しendの方針">隠しENDの方針<a href="#隠しendの方針" class="hash-link" aria-label="隠しENDの方針 への直接リンク" title="隠しENDの方針 への直接リンク" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="役割">役割<a href="#役割" class="hash-link" aria-label="役割 への直接リンク" title="役割 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">本編の理解に必須ではない</li>
+<li class="">収集とやり込みの総決算として機能する</li>
+<li class="">主ヒロインのエンディングより上位に見せない</li>
+<li class="">メダル 1000 枚の消費で好きなストーリーを選んで解放する購入制</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="内容の温度">内容の温度<a href="#内容の温度" class="hash-link" aria-label="内容の温度 への直接リンク" title="内容の温度 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">本編級の長編にはしないが、単発の一発ネタでは終わらせない</li>
+<li class="">各話 2 シーン以上で、掛け合いとオチが育つ長さを確保する</li>
+<li class="">ギャグ寄りで、遊び切った後の空気抜きとして機能させる</li>
+<li class="">ただし本編の印象を崩さず、各キャラの魅力が強まる方向に限定する</li>
+<li class="">ご褒美は恋愛成就より <code>このキャラをもっと好きになる一面</code> に置く</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_l0zU" id="推奨案">推奨案<a href="#推奨案" class="hash-link" aria-label="推奨案 への直接リンク" title="推奨案 への直接リンク" translate="no">​</a></h3>
+<ul>
+<li class="">配置: <code>ミニゲーム一覧</code> の最下段でのみ解放</li>
+<li class="">内容:<!-- -->
+<ul>
+<li class="">第1話は湊を主役にした <code>軽口と保護者役</code> のギャグ寄りサブストーリー</li>
+<li class="">第2話は御子柴いろはを主役にした <code>静かな観察と刺さる一言</code> のサブストーリー</li>
+<li class="">第3話はあかりを主役にした <code>派手さと面倒見の良さ</code> を同時に見せる締めのサブストーリー</li>
+</ul>
+</li>
+<li class="">着地: 3本とも <code>遊び場だから少しだけ前に出る</code> 温度に止め、本編の感情クライマックスは食わない</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="本編分岐との関係">本編分岐との関係<a href="#本編分岐との関係" class="hash-link" aria-label="本編分岐との関係 への直接リンク" title="本編分岐との関係 への直接リンク" translate="no">​</a></h2>
+<ul>
+<li class="">メインルート条件には使わない</li>
+<li class="">BAD END 回避条件にも使わない</li>
+<li class="">サブシーン内での台詞差分、CG差分、短い後日談の条件には使ってよい</li>
+</ul>
+<p>これにより、ミニゲームが <code>遊ばないと損</code> ではなく
+<code>遊ぶと別の温度が見える</code> 位置に収まる。</p>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="運用上の注意">運用上の注意<a href="#運用上の注意" class="hash-link" aria-label="運用上の注意 への直接リンク" title="運用上の注意 への直接リンク" translate="no">​</a></h2>
+<ul>
+<li class="">1章内に複数本を詰め込みすぎない</li>
+<li class="">傷の直後に反射ゲームを置かない</li>
+<li class="">賭け台は負けで所持メダルが減るが、無料台が進行の逃げ道として残るようにする</li>
+<li class="">タイトルからの再挑戦で、シナリオ進行が壊れないよう完全分離する</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="ペルソナ評価条件">ペルソナ評価条件<a href="#ペルソナ評価条件" class="hash-link" aria-label="ペルソナ評価条件 への直接リンク" title="ペルソナ評価条件 への直接リンク" translate="no">​</a></h2>
+<ul>
+<li class="">ミニゲームENDは、既存の検証ペルソナで <code>ギャグ・日常パート</code> と <code>キャラクター魅力</code> の両方を落とさない</li>
+<li class=""><code>笑える</code> だけでは不可。A/C/D から <code>本編の空気を壊していない</code> 評価を取ること</li>
+<li class="">B/E/F/G からは <code>短くて分かりやすく、キャラを好きになれる</code> 評価を取ること</li>
+<li class="">目標は全ペルソナで総合 <code>7.5</code> 以上、コアターゲットの A/C/E は <code>8.5</code> 以上</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_l0zU" id="関連資料">関連資料<a href="#関連資料" class="hash-link" aria-label="関連資料 への直接リンク" title="関連資料 への直接リンク" translate="no">​</a></h2>
+<ul>
+<li class=""><a class="" href="/yoruuta/docs/docs/project/project-brief">企画書</a></li>
+<li class=""><a class="" href="/yoruuta/docs/docs/story/story-design">ストーリー設計書</a></li>
+<li class=""><a class="" href="/yoruuta/docs/docs/story/branching-design">分岐設計書</a></li>
+<li class=""><a class="" href="/yoruuta/docs/docs/architecture/minigame-system-architecture">ミニゲーム実装設計</a></li>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="ドキュメントページ"><a class="pagination-nav__link pagination-nav__link--prev" href="/yoruuta/docs/docs/story/festival-performance-design"><div class="pagination-nav__sublabel">前へ</div><div class="pagination-nav__label">文化祭上演企画設計</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/yoruuta/docs/docs/characters/"><div class="pagination-nav__sublabel">次へ</div><div class="pagination-nav__label">キャラクター一覧</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_TCPb thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#目的" class="table-of-contents__link toc-highlight">目的</a></li><li><a href="#基本方針" class="table-of-contents__link toc-highlight">基本方針</a><ul><li><a href="#1-本編の主導権を奪わない" class="table-of-contents__link toc-highlight">1. 本編の主導権を奪わない</a></li><li><a href="#2-発見そのものを報酬にする" class="table-of-contents__link toc-highlight">2. 発見そのものを報酬にする</a></li><li><a href="#3-物語文脈を持つゲームだけを採用する" class="table-of-contents__link toc-highlight">3. 物語文脈を持つゲームだけを採用する</a></li><li><a href="#4-収集と滞在を分ける" class="table-of-contents__link toc-highlight">4. 収集と滞在を分ける</a></li></ul></li><li><a href="#導入意図" class="table-of-contents__link toc-highlight">導入意図</a></li><li><a href="#システムの骨子" class="table-of-contents__link toc-highlight">システムの骨子</a><ul><li><a href="#解放フロー" class="table-of-contents__link toc-highlight">解放フロー</a></li><li><a href="#メダルフロー" class="table-of-contents__link toc-highlight">メダルフロー</a></li><li><a href="#隠しendフロー" class="table-of-contents__link toc-highlight">隠しENDフロー</a></li></ul></li><li><a href="#メダル設計の原則" class="table-of-contents__link toc-highlight">メダル設計の原則</a><ul><li><a href="#1-入口は残し賭け台はちゃんと痛い" class="table-of-contents__link toc-highlight">1. 入口は残し、賭け台はちゃんと痛い</a></li><li><a href="#2-うまさの報酬も残す" class="table-of-contents__link toc-highlight">2. うまさの報酬も残す</a></li><li><a href="#3-ゲームごとに欲求の種類を分ける" class="table-of-contents__link toc-highlight">3. ゲームごとに欲求の種類を分ける</a></li></ul></li><li><a href="#収録候補ミニゲーム" class="table-of-contents__link toc-highlight">収録候補ミニゲーム</a></li><li><a href="#初期3本の確定案" class="table-of-contents__link toc-highlight">初期3本の確定案</a><ul><li><a href="#採用理由" class="table-of-contents__link toc-highlight">採用理由</a></li></ul></li><li><a href="#配置詳細" class="table-of-contents__link toc-highlight">配置詳細</a><ul><li><a href="#1-arcade_stack" class="table-of-contents__link toc-highlight">1. <code>arcade_stack</code></a></li><li><a href="#2-card_21" class="table-of-contents__link toc-highlight">2. <code>card_21</code></a></li><li><a href="#3-lucky_reels" class="table-of-contents__link toc-highlight">3. <code>lucky_reels</code></a></li></ul></li><li><a href="#優先実装順" class="table-of-contents__link toc-highlight">優先実装順</a><ul><li><a href="#phase-1" class="table-of-contents__link toc-highlight">Phase 1</a></li><li><a href="#phase-2" class="table-of-contents__link toc-highlight">Phase 2</a></li></ul></li><li><a href="#湊ゲーセン案の位置づけ" class="table-of-contents__link toc-highlight">湊ゲーセン案の位置づけ</a></li><li><a href="#タイトル画面との関係" class="table-of-contents__link toc-highlight">タイトル画面との関係</a><ul><li><a href="#シナリオ分岐マップ表示" class="table-of-contents__link toc-highlight">シナリオ分岐マップ表示</a></li></ul></li><li><a href="#隠しendの方針" class="table-of-contents__link toc-highlight">隠しENDの方針</a><ul><li><a href="#役割" class="table-of-contents__link toc-highlight">役割</a></li><li><a href="#内容の温度" class="table-of-contents__link toc-highlight">内容の温度</a></li><li><a href="#推奨案" class="table-of-contents__link toc-highlight">推奨案</a></li></ul></li><li><a href="#本編分岐との関係" class="table-of-contents__link toc-highlight">本編分岐との関係</a></li><li><a href="#運用上の注意" class="table-of-contents__link toc-highlight">運用上の注意</a></li><li><a href="#ペルソナ評価条件" class="table-of-contents__link toc-highlight">ペルソナ評価条件</a></li><li><a href="#関連資料" class="table-of-contents__link toc-highlight">関連資料</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 よるのうたかた. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
