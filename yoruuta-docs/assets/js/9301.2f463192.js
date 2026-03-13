@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunk_yoruuta_docs=globalThis.webpackChunk_yoruuta_docs||[]).push([[9301],{29301(a,s,u){u.d(s,{createInfoServices:()=>c.v});var c=u(61624);u(17899)}}]);

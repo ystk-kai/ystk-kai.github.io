@@ -1,0 +1,1 @@
+(globalThis.webpackChunk_yoruuta_docs=globalThis.webpackChunk_yoruuta_docs||[]).push([[3707],{73707(){}}]);
