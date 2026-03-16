@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunk_yoruuta_docs=globalThis.webpackChunk_yoruuta_docs||[]).push([[9988],{99988(a,e,s){s.d(e,{createPieServices:()=>u.f});var u=s(81691);s(17899)}}]);

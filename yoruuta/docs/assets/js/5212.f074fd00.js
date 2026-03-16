@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunk_yoruuta_docs=globalThis.webpackChunk_yoruuta_docs||[]).push([[5212],{95212(c,e,u){u.d(e,{createArchitectureServices:()=>a.S});var a=u(46174);u(17899)}}]);
